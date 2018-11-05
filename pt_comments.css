@@ -10,14 +10,3 @@
     float: left;
     margin-right: 10px;
 }
-
-.userIconContainer {
-    float: left;
-}
-
-.userIcon {
-    margin: 10px 10px 0px 10px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-}

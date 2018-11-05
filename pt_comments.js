@@ -18,9 +18,9 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 //
 // Asynchronous download PDF
 //
-pdfjsLib.getDocument(url).then(getPdfHelloWorld);
+pdfjsLib.getDocument(url).then(getPdfPastTest);
 
-function getPdfHelloWorld(pdf) {
+function getPdfPastTest(pdf) {
   totalNumberOfPages = pdf.numPages;
   const index = document.querySelector('#page');
   index.innerText = `Page: ${currentPageNum}/${totalNumberOfPages}`
@@ -54,22 +54,22 @@ function getPdfHelloWorld(pdf) {
 const prevPage = function (e) {
   if (currentPageNum > 1) {
     currentPageNum -= 1;
-    pdfjsLib.getDocument(url).then(getPdfHelloWorld);
+    pdfjsLib.getDocument(url).then(getPdfPastTest);
   }
 }
 const nextPage = function (e) {
   if (currentPageNum < totalNumberOfPages) {
     currentPageNum += 1;
-    pdfjsLib.getDocument(url).then(getPdfHelloWorld);
+    pdfjsLib.getDocument(url).then(getPdfPastTest);
   }
 }
 const zoomIn = function (e) {
   scale += 0.1;
-  pdfjsLib.getDocument(url).then(getPdfHelloWorld);
+  pdfjsLib.getDocument(url).then(getPdfPastTest);
 }
 const zoomOut = function (e) {
     scale -= 0.1;
-    pdfjsLib.getDocument(url).then(getPdfHelloWorld);
+    pdfjsLib.getDocument(url).then(getPdfPastTest);
 }
 
 document.querySelector('#pdf-prev').addEventListener("click", prevPage);

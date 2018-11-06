@@ -3,6 +3,8 @@
  
 
 $(document).on('show.bs.modal','#EditProfile', function (event) {
+	console.log('gggg')
+
 	 var modal = $(this)
   	var fac =  $('div#FacultyName')
   	var year = $('div#yearStudy');
@@ -12,22 +14,25 @@ $(document).on('show.bs.modal','#EditProfile', function (event) {
   modal.find( $('input#yearOfStudy')).val(year.text());
   modal.find( $('input#Password-text')).val(Passw.text());
 	
-	 $('#thirdOne').click(function(){
-			
-		  	var newfac =  $('input#Faculty');
+
+})
+
+ $(document).on('click','#EditProfile', 'btn btn-primary',function(event){
+ 			
+			var newfac =  $('input#Faculty');
 		  	var newyear = $('input#yearOfStudy');
 		  	var newPassw = $('input#Password-text');
 
-		  //	console.log(newfac.val())
-		  //	console.log( $('div#FacultyName').text())
-		  		  	
-			modal.find($('div#FacultyName')).val(newfac.val());
-			modal.find($('div#yearStudy')).val(newyear.val());
-			modal.find($('input#Password-text')).val(newPassw.val());
-	
-			})
+			$('div#FacultyName').html(newfac.val());
+			$('div#yearStudy').html(newyear.val());
+			$('div#passW').html(newPassw.val());
 
 })
+
+
+
+
+
 
 
 	

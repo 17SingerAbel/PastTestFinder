@@ -39,6 +39,9 @@ function searchUsername(username) {
 }
 
 function filterSolutions(){
+	tableBody.innerHTML = '<tbody class="tableBody">\
+          					 <tr></tr>\
+        				   </tbody>'
 	tempList = [];
 	numberOfTemp = 0;
 	let yearSelector = document.querySelector('#deptSelectorYear')
@@ -60,6 +63,7 @@ function filterSolutions(){
 		}
 	}
 	console.log(tempList)
+	console.log(numberOfTemp)
 	addSolutionsToTable(tempList, numberOfTemp);
 }
 
@@ -85,19 +89,21 @@ function deleteSolutionFromTable(e){
 		let user = e.target.parentElement.parentElement.getElementsByTagName('td')[1].textContent;
 		const solution = searchUsername(user)
 		removeSolutionFromTable(solution)
-		numberOfSolutions -= 1
 	} 
 }
 
 function removeSolutionFromTable(solution) {
-	// const tableContainer = document.querySelector('#displayTableContainer')
-	// const table = tableContainer.getElementsByClassName("table table-striped")[0]
-	// const tableBody = table.getElementsByClassName('tableBody')[0]
-	for (let i = 0; i < numberOfSolutions; i++) {
+	// let num = numberOfTemp
+	for (let i = 1; i < numberOfTemp + 1; i++) {
 		let user = tableBody.getElementsByTagName('tr')[i].getElementsByTagName('td')[1].textContent;
 		if (user === solution.author) { 
 			tableBody.deleteRow(i)
+			numberOfTemp -= 1
+			console.log(numberOfTemp)
 		}
 
 	}
 }
+
+
+addSolutionsToTable(solutionList, numberOfSolutions)

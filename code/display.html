@@ -50,9 +50,9 @@
 <!--   </div> -->
 
 <!--     <div id="filterContainer" class="container" style="margin-top: 4%; width: 13%; margin-left: 1%"> -->
-      <div class="form-group my-4 row">
+      <div id="selectYearButton" class="form-group my-4 row">
         <label for="deptSelector" class="col-sm-3"></label>
-        <select class="form-control col-sm-9" id="deptSelector">
+        <select class="form-control col-sm-9" id="deptSelectorYear">
           <option>Year</option>
           <option>2016</option>
           <option>2017</option>
@@ -62,7 +62,7 @@
 
       <div id="selectTypeButton" class="form-group my-4 row">
         <label for="deptSelector" class="col-sm-3"></label>
-        <select class="form-control col-sm-9" id="deptSelector">
+        <select class="form-control col-sm-9" id="deptSelectorType">
           <option>Type</option>
           <option>Midterm</option>
           <option>Final</option>
@@ -71,14 +71,14 @@
 
       <div id="selectProfessorButton" class="form-group my-4 row">
         <label for="deptSelector" class="col-sm-3"></label>
-        <select class="form-control col-sm-9" id="deptSelector">
+        <select class="form-control col-sm-9" id="deptSelectorProf">
           <option>Professor</option>
           <option>Ken Jackson</option>
           <option>Steven Enagle</option>
           <option>David Liu</option>
         </select>
       </div>
-      <button id="filterButton" type="button" class="btn btn-secondary btn-lg">Filter</button>
+      <button onclick="filterSolutions()" id="filterButton" type="button" class="btn btn-secondary btn-lg">Filter</button>
     </div>
 
     <div id="displayTableContainer" class="container" style="margin-top: 1%; width: 80%; margin-left: 5%">
@@ -88,33 +88,11 @@
             <th scope="col">#</th>
             <th scope="col">Solutions</th>
             <th scope="col">username</th>
+            <th scope="col"> </th>
           </tr>
         </thead>
         <tbody class="tableBody">
-          <tr>
-            <th scope="row">1</th>
-            <td><a href="solution.html">Solution1.pdf</a></td>
-            <td>jellycsc</td>
-            <td><button type="button" class="delete-row">delete</button></td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td><a href="">Solution2.pdf</a></td>
-            <td>Cosmos</td>
-            <td><button type="button" class="delete-row">delete</button></td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td><a href="">Solution3.pdf</a></td>
-            <td>Claire</td>
-            <td><button type="button" class="delete-row">delete</button></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td><a href="">Solution4.pdf</a></td>
-            <td>17Singer</td>
-            <td><button type="button" class="delete-row">delete</button></td>
-          </tr>
+          <tr></tr>
         </tbody>
       </table>
     </div>

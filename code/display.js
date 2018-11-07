@@ -1,13 +1,14 @@
 "use strict"
 
 class Solution {
-	constructor(courseName, year, type, professor, author, fileId){
+	constructor(courseName, year, term, type, professor, author, fileId){
 		this.courseName = courseName;
 		this.year = year;
 		this.type = type;
 		this.professor = professor;
 		this.author = author;
 		this.fileId = fileId;
+		this.term = term;
 	}
 }
 
@@ -15,10 +16,10 @@ let numberOfSolutions = 4; // total number of solution
 let numberOfTemp = 0;
 let solutionList = []
 let tempList = []
-let Solution1 = new Solution("CSC309", "2016", "Midterm", "Ken Jackson", "jellycsc", "Solution1.pdf");
-let Solution2 = new Solution("CSC309", "2017", "Final", "Ken Jackson", "Cosmos", "Solution2.pdf");
-let Solution3 = new Solution("CSC309", "2017", "Midterm", "David Liu", "Claire", "Solution3.pdf");
-let Solution4 = new Solution("CSC309", "2018", "Midterm", "Ken Jackson", "17Singer", "Solution4.pdf");
+let Solution1 = new Solution("CSC309", "2016","Fall", "Midterm", "Ken Jackson", "jellycsc", "Solution1.pdf");
+let Solution2 = new Solution("CSC309", "2017", "Fall", "Final", "Ken Jackson", "Cosmos", "Solution2.pdf");
+let Solution3 = new Solution("CSC309", "2017", "Winter", "Midterm", "David Liu", "Claire", "Solution3.pdf");
+let Solution4 = new Solution("CSC309", "2016", "Winter", "Midterm", "Ken Jackson", "17Singer", "Solution4.pdf");
 solutionList.push(Solution1);
 solutionList.push(Solution2);
 solutionList.push(Solution3);
@@ -50,13 +51,16 @@ function filterSolutions(){
 	let type = typeSelector.options[typeSelector.selectedIndex].text
 	let profSelector = document.querySelector('#deptSelectorProf')
 	let prof = profSelector.options[profSelector.selectedIndex].text
+	let termSelector = document.querySelector('#deptSelectorTerm')
+	let term = termSelector.options[termSelector.selectedIndex].text
 	for (let i=0; i < numberOfSolutions; i ++) {
 		if (yearSelector.selectedIndex === 0) { year = solutionList[i].year}
 		if (typeSelector.selectedIndex === 0)  { type = solutionList[i].type}
 		if (profSelector.selectedIndex === 0) { prof = solutionList[i].professor}
+		if (termSelector.selectedIndex === 0) { term = solutionList[i].term}
 
 		if (solutionList[i].year === year && solutionList[i].type === type &&
-						solutionList[i].professor === prof){
+						solutionList[i].professor === prof && term === solutionList[i].term){
 			tempList.push(solutionList[i])
 			numberOfTemp = numberOfTemp +  1;
 
@@ -93,16 +97,29 @@ function deleteSolutionFromTable(e){
 
 function removeSolutionFromTable(solution) {
 	// let num = numberOfTemp
+	let targetRow = -1
+	// deleteSolutionFromList(solution)
 	for (let i = 1; i < numberOfTemp + 1; i++) {
 		let user = tableBody.getElementsByTagName('tr')[i].getElementsByTagName('td')[1].textContent;
 		if (user === solution.author) { 
-			tableBody.deleteRow(i)
-			numberOfTemp -= 1
-			console.log(numberOfTemp)
+			targetRow = i
+			// console.log(numberOfTemp)
 		}
-
 	}
+
+	let targetIndex = -1;
+	for (let j =0; j<numberOfSolutions; j++) {
+		if (solution.author === solutionList[j].author) {
+			targetIndex = j
+		}
+	}
+
+	solutionList.splice(targetIndex, 1)
+	console.log(solutionList)
+	numberOfSolutions = numberOfSolutions - 1
+	numberOfTemp -= 1
+	tableBody.deleteRow(targetRow)
 }
 
 
-// addSolutionsToTable(solutionList, numberOfSolutions)
+filterSolutions()

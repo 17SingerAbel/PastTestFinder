@@ -78,6 +78,7 @@ function addSolutionsToTable(solutions, numberOfTempSolutions){
         <th scope="row">' + row + '</th> \
         <td><a href="solution.html">'+ name +'</a></td> \
         <td>'+ author + '</td> \
+        <td><button type="button" class="delete-row">delete</button></td> \
       	</tr>');
 	}
 }

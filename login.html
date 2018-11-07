@@ -3,43 +3,62 @@
 <html>
   <head>
     <!--Reference: https://bootsnipp.com/snippets/featured/registration-form-->
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
    
     <!------ Include the above in your HEAD tag ---------->
     <link rel="stylesheet" type="text/css" href="registerAndLogin.css">
     
   </head>
-<body>
-    <div class="container">
-        <div class="row centered-form">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title"> <strong> Login </strong></h3>
-            </div>
-            <div class="panel-body">
-              <form role="form" id="loginForm">       
-                <div class="form-group" id = "userName-input">
-                  <input type="text" name="userName" id="userName" class="form-control input-sm " placeholder="User Name">
-                </div>         
-                <div class="form-group" id = "password-input">
-                  <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+<body id="LoginForm">
+
+      <nav class="navbar navbar-expand-sm bg-light navbar-light">
+
+      <a class="navbar-brand" href="#">
+            <!-- <img width="30" height="30" alt="" src="bird.png"> -->
+            <span class="text-dark ml-2 h5">Past Exam Finder</span>
+      </a>
+
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#"> <img src="user.png" alt="user">
+            <span class="ml-1">Sign Up</span></a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="#"> <img src="login.png"alt="login">
+            <span class="ml-1">Login</span></a>
+        </li>
+      </ul>   
+
+    </nav>
+
+      <div class="container">
+        <div class="login-register-form">
+        <div class="main-div">
+            <div class="panel">
+                 <h2>Login</h2>
+                 <p>Please enter your username and password</p>
+           </div>
+            <form id="Login">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                 </div>
                 <div>
                    <small> New user? <a href="register.html"> Create a new account</a></small> 
-                </div>                         
+                </div>    
+                <button type="submit" class="btn btn-primary">Login</button>
 
-                <input type="submit" value="Login" class="btn btn-info btn-block">  
-
-              </form>
-
-            </div>
-          </div>
+            </form>
         </div>
-      </div>
-    </div>
+       </div>
+     </div>
 
 <script type="text/javascript" src="login.js"></script>
 

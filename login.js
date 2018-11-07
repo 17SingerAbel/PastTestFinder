@@ -17,7 +17,7 @@ userArray.push(regularUser);
 userArray.push(adminUser);
 
 
-const inputArea = document.querySelector('#loginForm');
+const inputArea = document.querySelector('#Login');
 if(inputArea){
 	inputArea.addEventListener('submit', checkExists);
 }
@@ -26,8 +26,9 @@ function checkExists(e){
 	e.preventDefault();
 	//check wheather the user exists 
 	//check user name first
-	var userInputName = document.querySelector('#userName').value 
-	console.log(userArray.length)
+	console.log('hhh')
+	var userInputName = document.querySelector('#inputUsername').value 
+	console.log(userInputName)
 	for (var i=0; i<userArray.length; i++ ){
 		var tempName = userArray[i].username
 		console.log(i)
@@ -35,7 +36,7 @@ function checkExists(e){
 		console.log(tempName)
 		if (userInputName === tempName) {			
 			//check passwaord
-			var userInputPassword = document.querySelector('#password').value 
+			var userInputPassword = document.querySelector('#inputPassword').value 
 			var tempPassword = userArray[i].password
 			if (tempPassword === userInputPassword) {
 				console.log('Find Password, exists')

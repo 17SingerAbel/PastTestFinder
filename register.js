@@ -14,18 +14,16 @@ function checkUserName(e){
 
 	for (var i=0; i<userArray.length; i++ ){
 		var tempName = userArray[i].username
-		var newName = document.querySelector('#newUserName').value
+		var newName = document.querySelector('#newUsername').value
 		if (tempName === newName) {
 			alert('Username already exists');
 			break;
 		}
 		if(i == (userArray.length-1)) {	
 			var firstPassword = document.querySelector('#newPassword').value 
-			var secondPassword = document.querySelector('#password_confirmation').value 
+			var secondPassword = document.querySelector('#password-comfirm').value 
 			if (firstPassword === secondPassword){
 				//direct to login page
-				console.log('add')
-				
 				const newRegularUser = new person(newName, firstPassword,'user')
 				userArray.push(newRegularUser);
 				

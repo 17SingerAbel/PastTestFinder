@@ -4,10 +4,12 @@
   <head>
     <!--Reference: https://bootsnipp.com/snippets/featured/registration-form-->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+   
     <!------ Include the above in your HEAD tag ---------->
-    <link rel="stylesheet" type="text/css" href="registerPage.css">
+    <link rel="stylesheet" type="text/css" href="registerAndLogin.css">
+    
   </head>
 <body>
     <div class="container">
@@ -18,27 +20,28 @@
               <h3 class="panel-title"> <strong> Login </strong></h3>
             </div>
             <div class="panel-body">
-              <form role="form">       
-                <div class="form-group">
-      
-                  <input type="text" name="userName" id="userName" class="form-control input-sm" placeholder="User Name">
+              <form role="form" id="loginForm">       
+                <div class="form-group" id = "userName-input">
+                  <input type="text" name="userName" id="userName" class="form-control input-sm " placeholder="User Name">
                 </div>         
-
-                <div class="form-group">
+                <div class="form-group" id = "password-input">
                   <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
                 </div>
                 <div>
                    <small> New user? <a href="register.html"> Create a new account</a></small> 
                 </div>                         
 
-                <input type="submit" value="Login" class="btn btn-info btn-block">
-              
+                <input type="submit" value="Login" class="btn btn-info btn-block">  
+
               </form>
+
             </div>
           </div>
         </div>
       </div>
     </div>
+
+<script type="text/javascript" src="login.js"></script>
 
 </body>
 </html>

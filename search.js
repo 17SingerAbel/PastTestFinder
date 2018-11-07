@@ -1,0 +1,59 @@
+const courses = [];
+
+class Course {
+	constructor(dept, courseNumber) {
+		this.dept = dept;
+		this.courseNumber = courseNumber;
+	}
+
+	getCourseName() {
+		return this.dept + this.courseNumber;
+	}
+}
+
+courses.push(new Course('CSC','309'));
+courses.push(new Course('MAT','194'));
+
+// console.log(courses[0].getCourseName());
+
+
+const searchForm = document.querySelector('#searchForm');
+
+searchForm.addEventListener('submit', findCourseValid);
+
+function findCourseValid(e){
+
+	e.preventDefault();
+	console.log("checking whether book is valid");
+
+	const courseName = document.querySelector('#courseName').value;
+	const dept = courseName.slice(0,3);
+	const courseNumber = courseName.slice(3);
+
+	if(isLetter(dept) && isThreeDigits(courseNumber)){
+		const resultCourse = new Course(dept.toUpperCase(), courseNumber);
+		console.log(resultCourse);
+	}
+
+	document.querySelector('#courseName').value = '';
+
+}
+
+function isLetter(str) {
+  	return str.toLowerCase() != str.toUpperCase();
+}
+
+function isThreeDigits(str) {
+	const num = parseInt(str);
+
+	if(isNaN(num)){
+		$("#errorMessage").html("Not a course number. <br> Please input a valid number, like 'CSC'+'309'.");
+		return false;
+	}
+	if(num>=500 || num<100){
+		$("#errorMessage").html("Course Number should be within 100-499. <br> Please input a valid number, like 'CSC'+'309'.");
+		return false;
+	}
+
+	return true;
+}

@@ -120,5 +120,5 @@ function navBarIsLogin(login, username){
 	}
 }
 
-var login = false;
+var login = true;
 navBarIsLogin(login, "Liu");

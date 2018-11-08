@@ -1,7 +1,9 @@
 $(function() {
   $("#searchButton").click(function(e) {
-    e.preventDefault();
-    checkInputAtSearchBox($( "#searchBox" ).val());
+    // e.preventDefault();
+    if(checkInputAtSearchBox($( "#searchBox" ).val())){
+    	$("#searchButton").attr("href", "display.html");
+    }
   });
 });
 
@@ -13,7 +15,9 @@ function checkInputAtSearchBox(courseName){
 		// const resultCourse = new Course(dept.toUpperCase(), courseNumber);
 		$("#navbarErrorMessage").html("");
 		console.log(dept.toUpperCase()+courseNumber);
+		return true;
 	}
+	return false;
 }
 
 
@@ -77,7 +81,7 @@ $( "#fileSubmit" ).on( "click", function() {
 				const newFile = new FileInfo(dept, courseNumber, year, term, file);
 				console.log(newFile);
 				alert("You have successfully uploaded the file.");
-				$("#submitLink").attr("href", "https://www.w3schools.com/jquery/");
+				$("#submitLink").attr("href", "display.html");
 			}
 		}else{
 			alert("You must select a department.")

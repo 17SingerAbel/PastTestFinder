@@ -1,0 +1,122 @@
+<!--Register Page-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Reference: https://bootsnipp.com/snippets/nPvnk-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	
+
+	  
+    <link rel="stylesheet" type="text/css" href="userProfile.css">
+    <script type="text/javascript" src='userProfile-Action.js'></script>
+
+  </head>
+<body>
+		<div class="container">
+			<div class="row ">
+					 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+					 	<!--https://bootsnipp.com/snippets/featured/simple-user-profile-->
+					<div class="panel panel-default">
+					  <div class="panel-heading"> 
+					   <h4 >User Profile</h4>
+						</div>
+					  <div class="panel-body">					       
+					    <div class="box box-info">				        
+					        <div class="box-body">
+					        	 <div class="col-sm-6">
+					        		 <div  align="center"> 
+					         			<img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive">
+					           			 <input id="profile-image-upload" class="hidden" type="file">
+										<div style="color:#999;" >click here to change profile image</div>
+					                <!--Upload Image Js And Css-->
+		                     
+		                    		 </div>	              
+		             				 <br>	    
+		            			</div>
+		            			<div class="col-sm-6">
+		           					 <h4 style="color:#00b1b1;"> User: 98485 </h4>     
+		          				</div>
+		           				<div class="clearfix"></div>
+		         			    <hr style="margin:5px 0 5px 0;">	    
+		              
+								<div class="col-sm-5 col-xs-6 tital " >Faculty:</div>
+								<div class="col-sm-7 col-xs-6 " id = "FacultyName">Computer Science
+						        </div>
+								<div class="clearfix"></div>
+								<div class="bot-border"></div>
+							
+								<div class="col-sm-5 col-xs-6 tital " >Year of Study:</div>
+								<div class="col-sm-7" id = "yearStudy" > Third Year</div>
+								 <div class="clearfix"></div>
+								<div class="bot-border"></div>
+
+								<div class="col-sm-5 col-xs-6 tital ">Password:</div>
+								<div class="col-sm-7"  id = "passW"> XXXXjng7</div>
+								 <div class="clearfix"></div>
+								<div class="bot-border"></div>
+
+								<!--Popup Window-->
+								<!--https://getbootstrap.com/docs/4.0/components/modal/-->
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditProfile" data-whatever="editP">Edit Profile</button>
+
+								<div class="modal fade" id="EditProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title" id="exampleModalLabel">Change Profile</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+								        <form>
+								          <div class="form-group">
+								            <label for="recipient-name" class="col-form-label">Faculty:</label>
+								            <input type="text" class="form-control" id="Faculty">
+								          </div>
+								          <div class="form-group">
+								            <label for="yearOfStudy" class="col-form-label">Year of Study:</label>
+								            <input type = "text" class="form-control" id="yearOfStudy">
+								          </div>
+								           <div class="form-group">
+								            <label for="Password" class="col-form-label">Password:</label>
+								            <input type = "text" class="form-control" id="Password-text">
+								          </div>
+								        </form>
+
+								      </div>
+								    	  <div class="modal-footer">
+								     	   <button type="button" class="btn btn-secondary" id = "firstOne" data-dismiss="modal">Close</button>
+								     	    <button type="button" id = "secondOne" class="btn btn-danger">Delete User</button>
+								      	   <button type="button" class="btn btn-primary" id = "thirdOne" data-dismiss="modal">Save</button>
+								      	  
+								     	 </div>
+								    </div>
+								  </div>
+								</div>				           
+					     	</div>
+		       			</div>
+		   			 </div> 
+		   		 </div>
+				</div>  
+		    <script>
+		              $(function() {
+		    $('#profile-image1').on('click', function() {
+		        $('#profile-image-upload').click();
+		    });
+		});       
+		              </script> 
+		       
+	      	        
+   
+		</div>
+		</div>
+
+		         
+</body>
+  
+                       
+                           
+</html>

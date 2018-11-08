@@ -14,7 +14,12 @@ class Course {
 courses.push(new Course('CSC','309'));
 courses.push(new Course('MAT','194'));
 
+$('#searchBox').on('keypress', function(e) {
+	if (e.keyCode == 13) { 
+	  document.getElementById("searchButton").click();
+	}
 
+});
 
 $( "#searchButton" ).on( "click", function(){
     // e.preventDefault();
@@ -29,7 +34,7 @@ $( "#searchButton" ).on( "click", function(){
 	if(isLetter(dept) && isThreeDigits(courseNumber)){
 		const resultCourse = new Course(dept.toUpperCase(), courseNumber);
 		console.log(resultCourse);
-		$("#searchButton").attr("href", "https://www.w3schools.com/jquery/");
+		$("#searchButton").attr("href", "display.html");
 	}
 });
 

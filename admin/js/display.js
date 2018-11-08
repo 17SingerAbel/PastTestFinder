@@ -80,7 +80,7 @@ function addSolutionsToTable(solutions, numberOfTempSolutions){
 		let author = solution.author
 		$('.tableBody tr:last').after('<tr> \
         <th scope="row">' + row + '</th> \
-        <td><a href="login.html">'+ name +'</a></td> \
+        <td><a href="solution.html">'+ name +'</a></td> \
         <td>'+ author + '</td> \
       	</tr>');
 	}
@@ -121,8 +121,25 @@ function removeSolutionFromTable(solution) {
 	tableBody.deleteRow(targetRow)
 }
 
-$("table").on( "click", function(e) {
-	window.location.href = "login.html";
-});
 
 filterSolutions()
+
+function navBarIsLogin(login, username){
+	if(login){
+		$("#loginButton").hide();
+		$("#logoutButton").show();
+
+		$("#navBarUserName").html("Hello, "+ username + "!");
+		login = false;
+		console.log('ready to logout');
+	}
+	else{
+		$("#loginButton").show();
+		$("#logoutButton").hide();
+		login = true;
+		console.log("ready to login");
+	}
+}
+
+var login = true;
+navBarIsLogin(login, "Admin");

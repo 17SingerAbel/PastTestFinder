@@ -37,15 +37,12 @@ function checkExists(e){
 			//check passwaord
 			var userInputPassword = document.querySelector('#inputPassword').value 
 			var tempPassword = userArray[i].password
-			if (userInputName == 'user' && tempPassword === userInputPassword) {
+			if (tempPassword === userInputPassword) {
 				console.log('Find Password, exists')
-				window.location.href = "user/index.html";
+				//direct to index page
 				break;		
-			} else if (userInputName == 'admin' && tempPassword === userInputPassword) {
-				console.log('Find Password, exists')
-				window.location.href = "admin/index.html";
-				break;
-			} else {				
+			}
+			else {				
 				alert('Password is not correct');
 				break;
 			}			

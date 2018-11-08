@@ -1,0 +1,27 @@
+#upLoadButton {
+	margin-left: 1%;
+}
+
+.container{
+	margin-right: 200px;
+	margin-left: 0px;
+	 margin-top: 3%;
+	 width: 50%;
+}
+
+.filterSize{
+	width: 150px;
+}
+
+.filterSizeProf{
+	width: 160px;
+}
+
+.form-row .btn-secondary{
+	  margin-top: 12px; 
+	  margin-left: -10px;
+	  height: 30px;
+	  width:60px;
+	  line-height: 30px;
+	  padding: 0px;
+}

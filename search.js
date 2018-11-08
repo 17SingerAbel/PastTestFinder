@@ -14,30 +14,26 @@ class Course {
 courses.push(new Course('CSC','309'));
 courses.push(new Course('MAT','194'));
 
-// console.log(courses[0].getCourseName());
 
 
-const searchForm = document.querySelector('#searchForm');
+$( "#searchButton" ).on( "click", function(){
+    // e.preventDefault();
 
-searchForm.addEventListener('submit', findCourseValid);
+    console.log("checking whether book is valid");
 
-function findCourseValid(e){
-
-	e.preventDefault();
-	console.log("checking whether book is valid");
-
-	const courseName = document.querySelector('#courseName').value;
+	// const courseName = document.querySelector('#courseName').value;
+	const courseName = $('#courseName').val();
 	const dept = courseName.slice(0,3);
 	const courseNumber = courseName.slice(3);
 
 	if(isLetter(dept) && isThreeDigits(courseNumber)){
 		const resultCourse = new Course(dept.toUpperCase(), courseNumber);
 		console.log(resultCourse);
+		$("#searchButton").attr("href", "https://www.w3schools.com/jquery/");
 	}
+});
 
-	document.querySelector('#courseName').value = '';
 
-}
 
 function isLetter(str) {
   	return str.toLowerCase() != str.toUpperCase();

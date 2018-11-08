@@ -1,12 +1,6 @@
-// $( "#narbarSearch" ).on( "click", function() {
-//   console.log( $( this ).text() );
-// });
-
-
 $(function() {
   $("#searchButton").click(function(e) {
     e.preventDefault();
-    // console.log( $( "#searchBox" ).val() );
     checkInputAtSearchBox($( "#searchBox" ).val());
   });
 });
@@ -17,6 +11,7 @@ function checkInputAtSearchBox(courseName){
 
 	if(isLetter(dept) && isThreeDigits(courseNumber)){
 		// const resultCourse = new Course(dept.toUpperCase(), courseNumber);
+		$("#navbarErrorMessage").html("");
 		console.log(dept.toUpperCase()+courseNumber);
 	}
 }
@@ -54,10 +49,6 @@ const FileInfo = function(dept, courseNumber, year, term, file){
 
 var dept, courseNumber, year, term, file;
 
-// $('#deptSelector').change(function() {
-//     dept = $( this ).val();
-// });
-
 $('#fileInput').on('change',function(){
 
     // var fileName = $(this).val();
@@ -79,10 +70,21 @@ $( "#fileSubmit" ).on( "click", function() {
 	year = $( yearSelector ).val();
 	term = $( termSelector ).val();
 
-	if(checkCourseNumber(courseNumber)){
-		const newFile = new FileInfo(dept, courseNumber, year, term, file);
-		console.log(newFile);
-		alert("You have successfully uploaded the file.");
+	if(file !== undefined){
+
+		if(dept!== "Select"){
+			if(checkCourseNumber(courseNumber)){
+				const newFile = new FileInfo(dept, courseNumber, year, term, file);
+				console.log(newFile);
+				alert("You have successfully uploaded the file.");
+				$("#submitLink").attr("href", "https://www.w3schools.com/jquery/");
+			}
+		}else{
+			alert("You must select a department.")
+		}
+		
+	}else{
+		alert("You must include a file.");
 	}
 
 });

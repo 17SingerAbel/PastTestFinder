@@ -25,11 +25,15 @@ $( "#searchButton" ).on( "click", function(){
 	const courseName = $('#courseName').val();
 	const dept = courseName.slice(0,3);
 	const courseNumber = courseName.slice(3);
+	
+	if (courseName.length == 0) {
+		$("#errorMessage").html("Please input CSC309 for demo.");
+	}
 
 	if(isLetter(dept) && isThreeDigits(courseNumber)){
 		const resultCourse = new Course(dept.toUpperCase(), courseNumber);
 		console.log(resultCourse);
-		$("#searchButton").attr("href", "https://www.w3schools.com/jquery/");
+		$("#searchButton").attr("href", "display.html");
 	}
 });
 

@@ -80,8 +80,8 @@ function addSolutionsToTable(solutions, numberOfTempSolutions){
 		let author = solution.author
 		$('.tableBody tr:last').after('<tr> \
         <th scope="row">' + row + '</th> \
-        <td><a href="login.html">'+ name +'</a></td> \
-        <td><a href="#">'+ author + '</td> \
+        <td><a class="fileName" href="login.html">'+ name + '</a></td> \
+        <td><a class="authorLink" href="#">'+ author + '</td> \
       	</tr>');
 	}
 }
@@ -121,8 +121,13 @@ function removeSolutionFromTable(solution) {
 	tableBody.deleteRow(targetRow)
 }
 
-$("table").on( "click", function(e) {
+$(document).on( "click", ".fileName" , function(e) {
 	window.location.href = "login.html";
 });
+
+$(document).on( "click", ".authorLink" , function(e) {
+	window.location.href = "TODO/viewOthersProfile_regular.html";
+});
+
 
 filterSolutions()

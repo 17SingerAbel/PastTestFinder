@@ -10,24 +10,61 @@
   <title>Past Exam Finder</title>
 </head>
 <body>
-<div class="center">
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-          Past Exam Finder
-        </a>
+
+
+<!-- no search bar, ready to login -->
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+
+      <a class="navbar-brand" href="#">
+            <!-- <img width="30" height="30" alt="" src="bird.png"> -->
+            <span class="text-dark ml-2 h5">Past Exam Finder</span>
+      </a>
+
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" id="searchBox" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" id="searchButton" type="submit">Search</button>
+      </form>
+
+      <span class="ml-2 text-secondary" id="navbarErrorMessage"></span>
+
+      <a class="nav-link text-dark" href="uploadPage.html">Upload</a>
+
+      <ul class="nav navbar-nav ml-auto" id="loginButton">
+        <li class="nav-item active">
+          <a class="nav-link" href="#"> <img src="icon/user.png"alt="user">
+            <span class="ml-1">Sign Up</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#"> <img src="icon/login.png"alt="login">
+            <span class="ml-1">Login</span></a>
+        </li>
+      </ul>  
+
+      <ul class="nav navbar-nav ml-auto" id="logoutButton">
+        <span class="navbar-text" id="navBarUserName">Hello, username!</span>
+        <li class="nav-item active">
+          <a class="nav-link" href="uploadPage.html"> <img class="ml-2" src="icon/logout.png"alt="logout">
+            <span class="ml-1">Logout</span></a>
+        </li>
+      </ul>
+
     </nav>
-    <div id="pdf-buttons">
+
+
+
+<div class="center">
+
+    <div id="pdf-buttons" class="m-2">
         <button id="pdf-prev" class="btn btn-primary btn-sm">Previous</button>
         <button id="pdf-next" class="btn btn-primary btn-sm">Next</button>
         <button id="pdf-smaller" class="btn btn-outline-dark">-</button>
         <button id="pdf-bigger" class="btn btn-outline-dark">+</button>
         <a id="pdf-download" class="btn btn-success" target="_blank">Download</a>
-        <span id='page'> Page: 1/10</span>
+        <span class="ml-2" id='page'> Page: 1/10</span>
     </div>
-    <canvas id="the-canvas"></canvas>
+    <canvas id="the-canvas" class="m-2"></canvas>
     <p>
-        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <a class="btn btn-primary mt-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
             Add new comments
         </a>
     </p>

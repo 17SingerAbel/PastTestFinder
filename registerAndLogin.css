@@ -1,7 +1,4 @@
 /*https://bootsnipp.com/snippets/featured/login-form*/
-body{ 
-   background-color: #525252;
- }
 
 .form-heading { 
     color:#fff;
@@ -24,7 +21,9 @@ body{
   line-height: 50px;
 }
 .main-div {
-  background: #ffffff none repeat scroll 0 0;
+  background: #F8F8F8; none repeat scroll 0 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /*shadow data come fomr "https://www.w3schools.com/css/css3_shadows.asp"*/
   border-radius: 2px;
   margin: 10px auto 30px;
   max-width: 38%;

@@ -122,7 +122,7 @@ function removeSolutionFromTable(solution) {
 }
 
 $(document).on( "click", ".fileName" , function(e) {
-	window.location.href = "user/pt_comments.html";
+	window.location.href = "pt_comments.html";
 });
 
 $(document).on( "click", ".authorLink" , function(e) {

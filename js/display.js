@@ -81,7 +81,7 @@ function addSolutionsToTable(solutions, numberOfTempSolutions){
 		$('.tableBody tr:last').after('<tr> \
         <th scope="row">' + row + '</th> \
         <td><a href="login.html">'+ name +'</a></td> \
-        <td>'+ author + '</td> \
+        <td><a href="#">'+ author + '</td> \
       	</tr>');
 	}
 }

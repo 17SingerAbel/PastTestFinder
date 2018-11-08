@@ -1,6 +1,6 @@
 // hardcode one regular user and one admin
 class person{
-	constructor(username, password, type){
+	constructor(username, password, type,faculty,year){
 		this.username = username
 		this.password = password
 		this.type = type
@@ -8,8 +8,8 @@ class person{
 
 }
 
-const regularUser = new person('regularuser123', '1234567','user')
-const adminUser = new person('admin123','qwert','admin')
+const regularUser = new person('regularuser123', '1234567','user');
+const adminUser = new person('admin123','qwert','admin');
 
 const userArray = []
 userArray.push(regularUser);

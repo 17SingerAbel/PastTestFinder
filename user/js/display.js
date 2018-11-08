@@ -80,7 +80,7 @@ function addSolutionsToTable(solutions, numberOfTempSolutions){
 		let author = solution.author
 		$('.tableBody tr:last').after('<tr> \
         <th scope="row">' + row + '</th> \
-        <td><a href="solution.html">'+ name +'</a></td> \
+        <td><a class="doc-name" href="solution.html">'+ name +'</a></td> \
         <td>'+ author + '</td> \
       	</tr>');
 	}
@@ -140,6 +140,10 @@ function navBarIsLogin(login, username){
 		console.log("ready to login");
 	}
 }
+
+$(".doc-name").on( "click", function(e) {
+	window.location.href = "www.baidu.com";
+});
 
 var login = true;
 navBarIsLogin(login, "Liu");

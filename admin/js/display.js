@@ -143,11 +143,11 @@ function navBarIsLogin(login, username){
 }
 
 $(document).on( "click", ".fileName" , function(e) {
-	window.location.href = "login.html";
+	window.location.href = "pt_comments.html";
 });
 
 $(document).on( "click", ".authorLink" , function(e) {
-	window.location.href = "TODO/viewOthersProfile_regular.html";
+	window.location.href = "../profile/userProfile_admin.html";
 });
 
 var login = true;

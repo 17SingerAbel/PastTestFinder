@@ -80,8 +80,8 @@ function addSolutionsToTable(solutions, numberOfTempSolutions){
 		let author = solution.author
 		$('.tableBody tr:last').after('<tr> \
         <th scope="row">' + row + '</th> \
-        <td><a class="doc-name" href="solution.html">'+ name +'</a></td> \
-        <td>'+ author + '</td> \
+        <td><a class="fileName" href="login.html">'+ name + '</a></td> \
+        <td><a class="authorLink" href="#">'+ author + '</td> \
       	</tr>');
 	}
 }
@@ -121,29 +121,13 @@ function removeSolutionFromTable(solution) {
 	tableBody.deleteRow(targetRow)
 }
 
-
-filterSolutions()
-
-function navBarIsLogin(login, username){
-	if(login){
-		$("#loginButton").hide();
-		$("#logoutButton").show();
-
-		$("#navBarUserName").html("Hello, "+ username + "!");
-		login = false;
-		console.log('ready to logout');
-	}
-	else{
-		$("#loginButton").show();
-		$("#logoutButton").hide();
-		login = true;
-		console.log("ready to login");
-	}
-}
-
-$(".doc-name").on( "click", function(e) {
-	window.location.href = "www.baidu.com";
+$(document).on( "click", ".fileName" , function(e) {
+	window.location.href = "pt_comments.html";
 });
 
-var login = true;
-navBarIsLogin(login, "Liu");
+$(document).on( "click", ".authorLink" , function(e) {
+	window.location.href = "../profile/viewOthersProfile_regular.html";
+});
+
+
+filterSolutions()

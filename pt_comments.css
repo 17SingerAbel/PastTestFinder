@@ -10,3 +10,11 @@
     float: left;
     margin-right: 10px;
 }
+
+.blockquote-footer .btn-danger{
+
+  font-size: 12px;
+  width: 20%;
+  height: 20px;
+  padding: 0;
+}

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Home Page</title>
+  </head>
+
+
+  <body>
+    <!-- no search bar, ready to login -->
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+
+      <a class="navbar-brand" href="#">
+            <!-- <img width="30" height="30" alt="" src="bird.png"> -->
+            <span class="text-dark ml-2 h5">Past Exam Finder</span>
+      </a>
+
+
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" id="searchBox" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" id="searchButton" type="submit">Search</button>
+      </form>
+      
+      <span class="ml-2 text-secondary" id="navbarErrorMessage"></span>
+
+
+      <a class="nav-link text-dark" href="uploadPage.html">Upload</a>
+
+      <ul class="nav navbar-nav ml-auto" id="loginButton">
+        <li class="nav-item active">
+          <a class="nav-link" href="#"> <img src="icon/user.png"alt="user">
+            <span class="ml-1">Sign Up</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#"> <img src="icon/login.png"alt="login">
+            <span class="ml-1">Login</span></a>
+        </li>
+      </ul>  
+
+      <ul class="nav navbar-nav ml-auto" id="logoutButton">
+        <span class="navbar-text" id="navBarUserName">Hello, username!</span>
+        <li class="nav-item active">
+          <a class="nav-link" href="uploadPage.html"> <img class="ml-2" src="icon/logout.png"alt="logout">
+            <span class="ml-1">Logout</span></a>
+        </li>
+      </ul>
+
+    </nav>
+
+
+    <div class="container mt-5 w-50" >
+
+      <div class="row">
+        <label for="exampleSelect1" class="col-sm-3">Upload</label>
+        <div class="custom-file col-sm-9">
+          <input type="file" class="custom-file-input" id="fileInput">
+          <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+      </div>
+        
+
+      <div class="form-group my-4 row">
+        <label for="deptSelector" class="col-sm-3">Department</label>
+        <select class="form-control col-sm-9" id="deptSelector">
+          <option>Select</option>
+          <option>CSC</option>
+          <option>MAT</option>
+          <option>STA</option>
+        </select>
+      </div>
+
+      <div class="form-group row">
+          <label for="formGroupExampleInput" class="col-sm-3">Course Number</label>
+          <input type="text" class="form-control col-sm-9" id="courseNumInput" placeholder="Example: 309, 263, 135">
+          <span id="errorMessageInForm" class="col-sm-12 text-center mt-2"></span>
+      </div>
+
+      <div class="form-group my-4 row">
+        <label for="yearSelector" class="col-sm-3">Year</label>
+        <select class="form-control col-sm-9" id="yearSelector">
+          <option>Select</option>
+          <option>2018</option>
+          <option>2017</option>
+          <option>2016</option>
+          <option>2015</option>
+          <option>2014</option>
+          <option>2013</option>
+          <option>2012</option>
+          <option>2011</option>
+          <option>2010</option>
+          <option>2009</option>
+        </select>
+      </div>
+
+      <div class="form-group my-4 row">
+        <label for="termSelector" class="col-sm-3">Term</label>
+        <select class="form-control col-sm-9" id="termSelector">
+          <option>Select</option>
+          <option>Midterm</option>
+          <option>Final</option>
+        </select>
+      </div>
+
+      <div class="text-center col-12">
+        <a id="submitLink" href="#"><button type="submit" class="btn btn-primary" id="fileSubmit">Submit</button></a>
+      </div>
+
+      
+    </div>
+  
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="upload.js"></script>
+
+  </body>
+</html>
+
+

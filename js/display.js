@@ -126,7 +126,7 @@ $(document).on( "click", ".fileName" , function(e) {
 });
 
 $(document).on( "click", ".authorLink" , function(e) {
-	window.location.href = "TODO/viewOthersProfile_regular.html";
+	window.location.href = "profile/viewOthersProfile_regular.html";
 });
 
 

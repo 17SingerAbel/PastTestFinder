@@ -14,7 +14,12 @@ class Course {
 courses.push(new Course('CSC','309'));
 courses.push(new Course('MAT','194'));
 
+$('#searchBox').on('keypress', function(e) {
+	if (e.keyCode == 13) { 
+	  document.getElementById("searchButton").click();
+	}
 
+});
 
 $( "#searchButton" ).on( "click", function(){
     // e.preventDefault();

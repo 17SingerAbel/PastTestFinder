@@ -8,8 +8,8 @@ class person{
 
 }
 
-const regularUser = new person('regularuser123', '1234567','user');
-const adminUser = new person('admin123','qwert','admin');
+const regularUser = new person('user', 'user', 'user');
+const adminUser = new person('admin', 'admin', 'admin');
 
 const userArray = []
 userArray.push(regularUser);

@@ -78,12 +78,19 @@ function addSolutionsToTable(solutions, numberOfTempSolutions){
 		let row = i+1
 		let name = solution.fileId
 		let author = solution.author
-		$('.tableBody tr:last').after('<tr> \
-        <th scope="row">' + row + '</th> \
-        <td><a href="solution.html">'+ name +'</a></td> \
-        <td>'+ author + '</td> \
-        <td><button type="button" class="delete-row">delete</button></td> \
-      	</tr>');
+		$(".tableBody tr:last").after( "<tr> \
+											<th scope='row'>" + row + "</th> \
+											<td><a href='solution.html'>" + name + "</a></td> \
+											<td><a href='#'>" + author + "</a></td> \
+											<td><button type='button' class='delete-row'>delete</button></td> \
+										</tr>"
+		// $('.tableBody tr:last').after('<tr> \
+  //       <th scope="row">' + row + '</th> \
+  //       <td>' + '<a href="solution.html">'+ name +'</a></td> \
+  //       <td>'+ author + '</td> \
+  //       <td><button type="button" class="delete-row">delete</button></td> \
+  //     	</tr>'
+  		);
 	}
 }
 

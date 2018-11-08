@@ -1,13 +1,12 @@
 //response to buttons on user profile page
 
- 
 
-$(document).on('show.bs.modal','#EditProfile', function (event) {
+$('#EditProfile').on('show.bs.modal', function (event) {
 
 	 var modal = $(this)
-  	var fac =  $('div#FacultyName')
-  	var year = $('div#yearStudy');
-  	var Passw = $('div#passW');
+  	var fac =  $('p#FacultyName')
+  	var year = $('p#yearStudy');
+  	var Passw = $('p#passW');
   
   modal.find($('input#Faculty')).val(fac.text());
   modal.find( $('input#yearOfStudy')).val(year.text());
@@ -22,15 +21,15 @@ $(document).on('show.bs.modal','#EditProfile', function (event) {
 		  	var newyear = $('input#yearOfStudy');
 		  	var newPassw = $('input#Password-text');
 
-			$('div#FacultyName').html(newfac.val());
-			$('div#yearStudy').html(newyear.val());
-			$('div#passW').html(newPassw.val());
+			$('p#FacultyName').html(newfac.val());
+			$('p#yearStudy').html(newyear.val());
+			$('p#passW').html(newPassw.val());
 
 })
 
 $(document).on('click', '#deleteUserButton', function(){
-
-	console.log('delete user!')
+	alert('Delete user!');
+	//redirect to another page
 })
 
 

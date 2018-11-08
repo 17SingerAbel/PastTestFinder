@@ -1,6 +1,3 @@
-//chekc input password and comfirm password
-//check wheather the user name exists or not
-
 
 const submitRegisterForm = document.querySelector('#registerForm');
 if(submitRegisterForm){

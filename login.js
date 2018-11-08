@@ -1,4 +1,3 @@
-
 // hardcode one regular user and one admin
 class person{
 	constructor(username, password, type){
@@ -24,7 +23,7 @@ if(inputArea){
 
 function checkExists(e){
 	e.preventDefault();
-	//check wheather the user exists 
+	//check wheather the user exists or not
 	//check user name first
 	console.log('hhh')
 	var userInputName = document.querySelector('#inputUsername').value 

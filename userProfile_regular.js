@@ -4,8 +4,8 @@
 $(document).on('show.bs.modal','#EditProfile', function (event) {
 	
 	 var modal = $(this)
-  	var fac =  $('div#FacultyName')
-  	var year = $('div#yearStudy');
+  	var fac =  $('p#FacultyName')
+  	var year = $('p#yearStudy');
   
   modal.find($('input#Faculty')).val(fac.text());
   modal.find( $('input#yearOfStudy')).val(year.text());
@@ -19,8 +19,8 @@ $(document).on('show.bs.modal','#EditProfile', function (event) {
 		  	var newyear = $('input#yearOfStudy');
 		  
 
-			$('div#FacultyName').html(newfac.val());
-			$('div#yearStudy').html(newyear.val());
+			$('p#FacultyName').html(newfac.val());
+			$('p#yearStudy').html(newyear.val());
 
 })
 

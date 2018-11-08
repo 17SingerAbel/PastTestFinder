@@ -130,6 +130,7 @@ function checkInputAtSearchBox(courseName){
 
   if(isLetter(dept) && isThreeDigits(courseNumber)){
     // const resultCourse = new Course(dept.toUpperCase(), courseNumber);
+    $("#navbarErrorMessage").html("");
     console.log(dept.toUpperCase()+courseNumber);
   }
 }

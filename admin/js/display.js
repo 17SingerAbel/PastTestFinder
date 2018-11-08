@@ -80,8 +80,8 @@ function addSolutionsToTable(solutions, numberOfTempSolutions){
 		let author = solution.author
 		$('.tableBody tr:last').after('<tr> \
         <th scope="row">' + row + '</th> \
-        <td><a href="solution.html">'+ name +'</a></td> \
-        <td><a href="#">'+ author + '</td> \
+        <td><a class="fileName" href="login.html">'+ name + '</a></td> \
+        <td><a class="authorLink" href="#">'+ author + '</td> \
         <td><button type="button" class="delete-row">delete</button></td> \
       	</tr>');
 	}
@@ -141,6 +141,14 @@ function navBarIsLogin(login, username){
 		console.log("ready to login");
 	}
 }
+
+$(document).on( "click", ".fileName" , function(e) {
+	window.location.href = "login.html";
+});
+
+$(document).on( "click", ".authorLink" , function(e) {
+	window.location.href = "TODO/viewOthersProfile_regular.html";
+});
 
 var login = true;
 navBarIsLogin(login, "Admin");

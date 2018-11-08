@@ -9,7 +9,7 @@
 
 
 	 
-    <link rel="stylesheet" type="text/css" href="userProfile.css">
+     <link rel="stylesheet" type="text/css" href="css/userProfile.css">
   </head>
 <body>
 	    <nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -21,12 +21,12 @@
 
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#"> <img src="user.png" alt="user">
+          <a class="nav-link" href="#"> <img src="icon/user.png" alt="user">
             <span class="ml-1">Sign Up</span></a>
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="#"> <img src="login.png"alt="login">
+          <a class="nav-link" href="#"> <img src="icon/login.png"alt="login">
             <span class="ml-1">Login</span></a>
         </li>
       </ul>   
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src='reading.png' alt=""/>
+                            <img src='img/reading.png' alt=""/>
                             <div class="file btn btn-sm btn-primary">
                                 Change Photo
                                 <input type="file" name="file"/>
@@ -49,13 +49,14 @@
                         <div class="profile-head">
                         	<br>
                                     <h5>
-                                        Username: regularuser123
+                                        Username: user
                                     </h5>
                              <br>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                                </li>              
+                                </li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -81,14 +82,7 @@
                                                 <p id ="yearStudy">Third Year</p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Password:</label>
-                                            </div>
-                                            <div class="col-md-6" >
-                                                <p id = "passW">12345</p>
-                                            </div>
-                                        </div>
+                                        
                             </div>            
                         </div>
                     </div>
@@ -96,13 +90,12 @@
 
                 <div class="offset-md-4">       
   					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EditProfile" data-whatever="editP">Edit Profile</button>
-					 <button type="button" id = "deleteUserButton" class="btn btn-danger btn-sm">Delete User</button>
                </div>
                		<div class="modal fade" id="EditProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog" role="document">
 								    <div class="modal-content">
 								      <div class="modal-header">
-								        <h5 class="modal-title" id="exampleModalLabel">Change User Profile</h5>
+								        <h5 class="modal-title" id="exampleModalLabel">Change Profile</h5>
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
@@ -117,10 +110,7 @@
 								            <label for="yearOfStudy" class="col-form-label">Year of Study:</label>
 								            <input type = "text" class="form-control" id="yearOfStudy">
 								          </div>
-								           <div class="form-group">
-								            <label for="Password" class="col-form-label">Password:</label>
-								            <input type = "text" class="form-control" id="Password-text">
-								          </div>
+								          
 								        </form>
 
 								      </div>

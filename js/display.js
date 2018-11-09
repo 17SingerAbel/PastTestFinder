@@ -1,7 +1,7 @@
 "use strict"
 
 // This file is similar to the "display.js" in master/user/js folder, more comments are made in that file
-//This file will be merged to the file mentioned above in Phase2. 
+//This file will be merged to the file mentioned before in Phase2. 
 
 /******************Hardcode Part for Phase1*************************/
 class Solution {

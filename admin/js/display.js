@@ -1,7 +1,7 @@
 "use strict"
 
 // This file is similar to the "display.js" in master/user/js folder, more comments are made in that file
-//This file will be merged to the file mentioned above in Phase2. 
+//This file will be merged to the file mentioned before in Phase2. 
 
 /******************Hardcode Part for Phase1*************************/
 class Solution {
@@ -35,7 +35,6 @@ solutionList.push(Solution4);
 const tableContainer = document.querySelector('#displayTableContainer')
 const table = tableContainer.getElementsByClassName("table table-striped")[0]
 const tableBody = table.getElementsByClassName('tableBody')[0]
-// const filterContainer = document.querySelector('#filterContainer')
 tableContainer.addEventListener('click', deleteSolutionFromTable);
 
 function searchUsername(username) {
@@ -104,14 +103,11 @@ function deleteSolutionFromTable(e){
 }
 
 function removeSolutionFromTable(solution) {
-	// let num = numberOfTemp
 	let targetRow = -1
-	// deleteSolutionFromList(solution)
 	for (let i = 1; i < numberOfTemp + 1; i++) {
 		let user = tableBody.getElementsByTagName('tr')[i].getElementsByTagName('td')[1].textContent;
 		if (user === solution.author) { 
 			targetRow = i
-			// console.log(numberOfTemp)
 		}
 	}
 

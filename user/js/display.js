@@ -34,7 +34,6 @@ solutionList.push(Solution4);
 const tableContainer = document.querySelector('#displayTableContainer')
 const table = tableContainer.getElementsByClassName("table table-striped")[0]
 const tableBody = table.getElementsByClassName('tableBody')[0]
-// const filterContainer = document.querySelector('#filterContainer')
 tableContainer.addEventListener('click', deleteSolutionFromTable);
 
 function searchUsername(username) {

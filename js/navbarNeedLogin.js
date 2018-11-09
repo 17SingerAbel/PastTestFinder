@@ -57,5 +57,5 @@ function navBarIsLogin(login, username){
 	}
 }
 
-var login = true;
+var login = false;
 navBarIsLogin(login, "user");

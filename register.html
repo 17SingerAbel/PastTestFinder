@@ -17,25 +17,31 @@
   </head>
 <body id="LoginForm">
 
-      <nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <nav class="navbar navbar-expand-sm bg-light navbar-light">
 
-      <a class="navbar-brand" href="index.html">
-            <!-- <img width="30" height="30" alt="" src="bird.png"> -->
-            <span class="text-dark ml-2 h5">Past Exam Finder</span>
-      </a>
+    <a class="navbar-brand" href="index.html"><span class="text-dark ml-2 h5">Past Exam Finder</span></a>
 
-      <ul class="nav navbar-nav ml-auto" id="loginButton">
-        <li class="nav-item active">
-          <a class="nav-link" href="register.html"> <img src="icon/user.png"alt="user">
-            <span class="ml-1">Sign Up</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="login.html"> <img src="icon/login.png"alt="login">
-            <span class="ml-1">Login</span></a>
-        </li>
-      </ul>   
 
-    </nav>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" id="searchBox" type="search" placeholder="Search" aria-label="Search">
+      <a href="#" class="btn btn-outline-success my-2 my-sm-0" id="searchButton" role="button">Search</a>
+    </form>
+    
+    <span class="ml-2 text-secondary" id="navbarErrorMessage"></span>
+    <!-- <a class="nav-link text-dark" href="uploadPage.html">Upload</a> -->
+
+    <ul class="nav navbar-nav ml-auto" id="loginButton">
+      <li class="nav-item active">
+        <a class="nav-link" href="register.html"> <img src="icon/user.png"alt="user">
+          <span class="ml-1">Sign Up</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="login.html"> <img src="icon/login.png"alt="login">
+          <span class="ml-1">Login</span></a>
+      </li>
+    </ul>
+
+  </nav>
 
       <div class="container">
         <div class="login-register-form">
@@ -62,6 +68,7 @@
 
 <script type="text/javascript" src="js/register.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/navbarNeedLogin.js"></script>
 
 </body>
 </html>

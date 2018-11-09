@@ -130,7 +130,7 @@ function removeSolutionFromTable(solution) {
 //Phase2: User will be redirected to different type of page based on their type(user or admin)
 //Instead of using window.location.href directly, it will have a server call below, obtained user informaiton and then do comparison.  
 $(document).on( "click", ".fileName" , function(e) {
-	window.location.href = "user/pt_comments.html";
+	window.location.href = "pt_comments.html";
 });
 
 $(document).on( "click", ".authorLink" , function(e) {

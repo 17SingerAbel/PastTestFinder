@@ -132,6 +132,62 @@ function removeSolutionFromTable(solution) {
 
 filterSolutions()
 
+
+//Phase2: User will be redirected to different type of page based on their type(user or admin)
+//Instead of using window.location.href directly, it will have a server call below, obtained user informaiton and then do comparison. 
+$(document).on( "click", ".fileName" , function(e) {
+	window.location.href = "pt_comments.html";
+});
+
+$(document).on( "click", ".authorLink" , function(e) {
+	window.location.href = "../profile/userProfile_admin.html";
+});
+
+
+
+
+$(function() {
+  $("#searchButton").click(function(e) {
+    // e.preventDefault();
+    if(checkInputAtSearchBox($( "#searchBox" ).val())){
+    	$("#searchButton").attr("href", "../display.html");
+    }
+  });
+});
+
+function checkInputAtSearchBox(courseName){
+	const dept = courseName.slice(0,3);
+	const courseNumber = courseName.slice(3);
+
+	if(isLetter(dept) && isThreeDigits(courseNumber)){
+		// const resultCourse = new Course(dept.toUpperCase(), courseNumber);
+		$("#navbarErrorMessage").html("");
+		console.log(dept.toUpperCase()+courseNumber);
+		return true;
+	}
+	return false;
+}
+
+
+function isLetter(str) {
+  	return str.toLowerCase() != str.toUpperCase();
+}
+
+function isThreeDigits(str) {
+	const num = parseInt(str);
+
+	if(isNaN(num)){
+		$("#navbarErrorMessage").html("Not a course number");
+		return false;
+	}
+	if(num>=500 || num<100){
+		$("#navbarErrorMessage").html("Should be within 100-499");
+		return false;
+	}
+
+	return true;
+}
+
 function navBarIsLogin(login, username){
 	if(login){
 		$("#loginButton").hide();
@@ -148,16 +204,6 @@ function navBarIsLogin(login, username){
 		console.log("ready to login");
 	}
 }
-
-//Phase2: User will be redirected to different type of page based on their type(user or admin)
-//Instead of using window.location.href directly, it will have a server call below, obtained user informaiton and then do comparison. 
-$(document).on( "click", ".fileName" , function(e) {
-	window.location.href = "pt_comments.html";
-});
-
-$(document).on( "click", ".authorLink" , function(e) {
-	window.location.href = "../profile/userProfile_admin.html";
-});
 
 var login = true;
 navBarIsLogin(login, "Admin");

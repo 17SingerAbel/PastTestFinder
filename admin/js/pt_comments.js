@@ -118,9 +118,10 @@ submitBtn.addEventListener('click', (e) => {
 
 $(function() {
   $("#searchButton").click(function(e) {
-    e.preventDefault();
-    // console.log( $( "#searchBox" ).val() );
-    checkInputAtSearchBox($( "#searchBox" ).val());
+    // e.preventDefault();
+    if(checkInputAtSearchBox($( "#searchBox" ).val())){
+      $("#searchButton").attr("href", "../display.html");
+    }
   });
 });
 
@@ -132,7 +133,9 @@ function checkInputAtSearchBox(courseName){
     // const resultCourse = new Course(dept.toUpperCase(), courseNumber);
     $("#navbarErrorMessage").html("");
     console.log(dept.toUpperCase()+courseNumber);
+    return true;
   }
+  return false;
 }
 
 
@@ -155,7 +158,6 @@ function isThreeDigits(str) {
   return true;
 }
 
-
 function navBarIsLogin(login, username){
   if(login){
     $("#loginButton").hide();
@@ -173,5 +175,5 @@ function navBarIsLogin(login, username){
   }
 }
 
-var login = false;
-navBarIsLogin(login, "Liu");
+var login = true;
+navBarIsLogin(login, "Admin");

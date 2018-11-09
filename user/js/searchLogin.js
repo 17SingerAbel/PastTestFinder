@@ -78,4 +78,4 @@ function navBarIsLogin(login, username){
 }
 
 var login = true;
-navBarIsLogin(login, "Liu");
+navBarIsLogin(login, "user");

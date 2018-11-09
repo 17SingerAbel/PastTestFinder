@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Past Exam Finder</title>
+  <title>Past Exam Finder</title>
   <link rel="stylesheet" href="css/display.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 </head>
 <body>
 
-	<!-- no search bar, ready to login -->
-    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <nav class="navbar navbar-expand-sm bg-light navbar-light">
 
-      <a class="navbar-brand" href="index.html">
-            <!-- <img width="30" height="30" alt="" src="bird.png"> -->
-            <span class="text-dark ml-2 h5">Past Exam Finder</span>
-      </a>
+    <a class="navbar-brand" href="index.html"><span class="text-dark ml-2 h5">Past Exam Finder</span></a>
 
-	  <form class="form-inline">
+
+    <form class="form-inline">
       <input class="form-control mr-sm-2" id="searchBox" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" id="searchButton" type="submit">Search</button>
+      <a href="#" class="btn btn-outline-success my-2 my-sm-0" id="searchButton" role="button">Search</a>
     </form>
+    
+    <span class="ml-2 text-secondary" id="navbarErrorMessage"></span>
+    <!-- <a class="nav-link text-dark" href="uploadPage.html">Upload</a> -->
 
-      <!-- <ul class="nav navbar-nav ml-auto" id="loginButton"> -->
-        <!-- <li class="nav-item active"> -->
-          <!-- <a class="nav-link" href="#"> <img src="icon/user.png"alt="user"> -->
-            <!-- <span class="ml-1">Sign Up</span></a> -->
-        <!-- </li> -->
-        <!-- <li class="nav-item active"> -->
-          <!-- <a class="nav-link" href="#"> <img src="icon/login.png"alt="login"> -->
-            <!-- <span class="ml-1">Login</span></a> -->
-        <!-- </li> -->
-      <!-- </ul>   -->
+    <ul class="nav navbar-nav ml-auto" id="loginButton">
+      <li class="nav-item active">
+        <a class="nav-link" href="../register.html"> <img src="icon/user.png"alt="user">
+          <span class="ml-1">Sign Up</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../login.html"> <img src="icon/login.png"alt="login">
+          <span class="ml-1">Login</span></a>
+      </li>
+    </ul>  
 
-      <ul class="nav navbar-nav ml-auto" id="logoutButton">
-        <span class="navbar-text" id="navBarUserName">Hello, username!</span>
-        <li class="nav-item active">
-          <a class="nav-link" href="../index.html"> <img class="ml-2" src="icon/logout.png"alt="logout">
-            <span class="ml-1">Logout</span></a>
-        </li>
-      </ul> 
+    <ul class="nav navbar-nav ml-auto" id="logoutButton">
+      <span class="navbar-text" id="navBarUserName">Hello, username!</span>
+      <li class="nav-item active">
+        <a class="nav-link" href="../index.html"> <img class="ml-2" src="icon/logout.png"alt="logout">
+          <span class="ml-1">Logout</span></a>
+      </li>
+    </ul>
 
-    </nav>
+  </nav>
+    
 
   <div id="filterContainer" class="container" >
     <form class="col-12">
       <div class="form-row">
         <h1> <strong> CSC309 </strong></h1>
         <a id="upLoadButton" href="../upload.html" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">
-          Upload
-        </a>
+          Upload</a>
       </div>
     </form>
 <!--   </div> -->
@@ -101,7 +101,7 @@
       
 
     <div id="displayTableContainer" class="container">
-      <table class="table table-striped">
+      <table id='display-table' class="table table-striped">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -120,6 +120,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/display.js"></script>
+    <script type="text/javascript" src="../js/navbarHaveLogin.js"></script>
 
   </body>
 </html>

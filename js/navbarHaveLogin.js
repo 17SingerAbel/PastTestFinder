@@ -2,7 +2,7 @@ $(function() {
   $("#searchButton").click(function(e) {
     // e.preventDefault();
     if(checkInputAtSearchBox($( "#searchBox" ).val())){
-    	$("#searchButton").attr("href", "display.html");
+    	$("#searchButton").attr("href", "../display.html");
     }
   });
 });

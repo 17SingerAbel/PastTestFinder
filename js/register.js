@@ -1,3 +1,6 @@
+//This file is similar to the file called "register.js" in master/js, more comments are made in that file
+//This file will be merged to the file mentioned above in Phase2
+
 
 const submitRegisterForm = document.querySelector('#registerForm');
 if(submitRegisterForm){
@@ -8,7 +11,6 @@ if(submitRegisterForm){
 function checkUserName(e){
 	
 	e.preventDefault();
-
 	for (var i=0; i<userArray.length; i++ ){
 		var tempName = userArray[i].username
 		var newName = document.querySelector('#newUsername').value
@@ -22,12 +24,10 @@ function checkUserName(e){
 			if (firstPassword === secondPassword){
 				//direct to login page
 				const newRegularUser = new person(newName, firstPassword,'user')
-				userArray.push(newRegularUser);
-				
-				console.log(userArray.length)
-				console.log(userArray[userArray.length-1].username)
-
+				userArray.push(newRegularUser);		
 				alert('Register Success!');
+				//Phase2: after showing the "Success" alter window, add the input data to database
+				//manipulated data in server 			
 				window.location.href = "login.html";
 				break;
 				

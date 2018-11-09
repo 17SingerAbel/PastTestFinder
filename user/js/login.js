@@ -1,4 +1,11 @@
+
+//This file is similar to the file called "login.js" in master/js, more comments are made in that file
+//This file will be merged to the file mentioned above in Phase2
+
 // hardcode one regular user and one admin
+
+
+/*****************************Hardcode Part for Phase1***************************************/
 class person{
 	constructor(username, password, type,faculty,year){
 		this.username = username
@@ -15,11 +22,13 @@ const userArray = []
 userArray.push(regularUser);
 userArray.push(adminUser);
 
-
+/**********************************************************************************/
 const inputArea = document.querySelector('#Login');
 if(inputArea){
 	inputArea.addEventListener('submit', checkExists);
 }
+
+
 
 function checkExists(e){
 	e.preventDefault();
@@ -39,7 +48,6 @@ function checkExists(e){
 			var tempPassword = userArray[i].password
 			if (tempPassword === userInputPassword) {
 				console.log('Find Password, exists')
-				//direct to index page
 				break;		
 			}
 			else {				

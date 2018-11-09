@@ -1,5 +1,9 @@
 "use strict"
 
+// This file is similar to the "display.js" in master/user/js folder, more comments are made in that file
+//This file will be merged to the file mentioned above in Phase2. 
+
+/******************Hardcode Part for Phase1*************************/
 class Solution {
 	constructor(courseName, year, term, type, professor, author, fileId){
 		this.courseName = courseName;
@@ -24,6 +28,9 @@ solutionList.push(Solution1);
 solutionList.push(Solution2);
 solutionList.push(Solution3);
 solutionList.push(Solution4);
+
+/********************************************************************/
+
 
 const tableContainer = document.querySelector('#displayTableContainer')
 const table = tableContainer.getElementsByClassName("table table-striped")[0]
@@ -142,6 +149,8 @@ function navBarIsLogin(login, username){
 	}
 }
 
+//Phase2: User will be redirected to different type of page based on their type(user or admin)
+//Instead of using window.location.href directly, it will have a server call below, obtained user informaiton and then do comparison. 
 $(document).on( "click", ".fileName" , function(e) {
 	window.location.href = "pt_comments.html";
 });

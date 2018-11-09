@@ -1,5 +1,9 @@
 "use strict"
 
+//Phase1: harcode information about solution files
+//Phase2: Require a servercall, obtained file name, author, type ect. from server
+
+/******************Hardcode Part for Phase1*************************/
 class Solution {
 	constructor(courseName, year, term, type, professor, author, fileId){
 		this.courseName = courseName;
@@ -25,6 +29,8 @@ solutionList.push(Solution2);
 solutionList.push(Solution3);
 solutionList.push(Solution4);
 
+/********************************************************************/
+
 const tableContainer = document.querySelector('#displayTableContainer')
 const table = tableContainer.getElementsByClassName("table table-striped")[0]
 const tableBody = table.getElementsByClassName('tableBody')[0]
@@ -32,6 +38,7 @@ const tableBody = table.getElementsByClassName('tableBody')[0]
 tableContainer.addEventListener('click', deleteSolutionFromTable);
 
 function searchUsername(username) {
+	//Phase2: compare with data obtained from server
 	for (let i=0; i < numberOfSolutions; i++) {
 		if (username === solutionList[i].author) {
 			return solutionList[i]
@@ -71,7 +78,7 @@ function filterSolutions(){
 	addSolutionsToTable(tempList, numberOfTemp);
 }
 
-
+//Phase2: Before add a row in HTML, send new data to server
 function addSolutionsToTable(solutions, numberOfTempSolutions){
 	for (let i=0; i < numberOfTempSolutions; i++) {
 		let solution = solutions[i]
@@ -86,6 +93,7 @@ function addSolutionsToTable(solutions, numberOfTempSolutions){
 	}
 }
 
+//Phase2: Delete the file based on the file's name and author from server
 function deleteSolutionFromTable(e){
 	e.preventDefault();
 	if(e.target.classList.contains("delete-row")) {
@@ -96,14 +104,12 @@ function deleteSolutionFromTable(e){
 }
 
 function removeSolutionFromTable(solution) {
-	// let num = numberOfTemp
 	let targetRow = -1
-	// deleteSolutionFromList(solution)
 	for (let i = 1; i < numberOfTemp + 1; i++) {
 		let user = tableBody.getElementsByTagName('tr')[i].getElementsByTagName('td')[1].textContent;
 		if (user === solution.author) { 
 			targetRow = i
-			// console.log(numberOfTemp)
+		
 		}
 	}
 
@@ -121,6 +127,8 @@ function removeSolutionFromTable(solution) {
 	tableBody.deleteRow(targetRow)
 }
 
+//Phase2: User will be redirected to different type of page based on their type(user or admin)
+//Instead of using window.location.href directly, it will have a server call below, obtained user informaiton and then do comparison. 
 $(document).on( "click", ".fileName" , function(e) {
 	window.location.href = "pt_comments.html";
 });

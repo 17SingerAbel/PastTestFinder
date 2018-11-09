@@ -1,4 +1,7 @@
-// hardcode one regular user and one admin
+//Get all user information from database in Phase2.
+// hardcode one regular user and one admin, store them in an array in Phase1
+/*****************************Hardcode Part for Phase1***************************************/
+
 class person{
 	constructor(username, password, type,faculty,year){
 		this.username = username
@@ -16,6 +19,8 @@ userArray.push(regularUser);
 userArray.push(adminUser);
 
 
+/********************Code below check wheather user name in database or not********************/
+
 const inputArea = document.querySelector('#Login');
 if(inputArea){
 	inputArea.addEventListener('submit', checkExists);
@@ -23,26 +28,20 @@ if(inputArea){
 
 function checkExists(e){
 	e.preventDefault();
-	//check wheather the user exists or not
 	//check user name first
-	console.log('hhh')
 	var userInputName = document.querySelector('#inputUsername').value 
-	console.log(userInputName)
+	//Phase2: compare the input username with every username in database
+	//May require a server call 
 	for (var i=0; i<userArray.length; i++ ){
 		var tempName = userArray[i].username
-		console.log(i)
-		console.log(userInputName)
-		console.log(tempName)
 		if (userInputName === tempName) {			
 			//check passwaord
 			var userInputPassword = document.querySelector('#inputPassword').value 
 			var tempPassword = userArray[i].password
 			if (userInputName == 'user' && tempPassword === userInputPassword) {
-				console.log('Find Password, exists')
 				window.location.href = "user/index.html";
 				break;		
 			} else if (userInputName == 'admin' && tempPassword === userInputPassword) {
-				console.log('Find Password, exists')
 				window.location.href = "admin/index.html";
 				break;
 			} else {				

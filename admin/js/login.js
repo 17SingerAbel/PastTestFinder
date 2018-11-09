@@ -1,4 +1,9 @@
+//This file is similar to the file called "login.js" in master/js, more comments are made in that file
+//This file will be merged to the file mentioned above in Phase2
+
 // hardcode one regular user and one admin
+
+/*****************************Hardcode Part for Phase1********************************/
 class person{
 	constructor(username, password, type,faculty,year){
 		this.username = username
@@ -14,7 +19,7 @@ const adminUser = new person('admin', 'admin', 'admin');
 const userArray = []
 userArray.push(regularUser);
 userArray.push(adminUser);
-
+/**********************************************************************************/
 
 const inputArea = document.querySelector('#Login');
 if(inputArea){

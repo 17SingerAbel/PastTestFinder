@@ -1,9 +1,10 @@
-//response to buttons on user profile page
+//response to "Save" button on popwindow of user profile page
+//We can check the login status(user type is regular user or admin) in Phase2, so this file will be merged with the "userProfile_regular.js" 
 
 
 $('#EditProfile').on('show.bs.modal', function (event) {
 
-	 var modal = $(this)
+	var modal = $(this)
   	var fac =  $('p#FacultyName')
   	var year = $('p#yearStudy');
   	var Passw = $('p#passW');
@@ -21,6 +22,7 @@ $('#EditProfile').on('show.bs.modal', function (event) {
 		  	var newyear = $('input#yearOfStudy');
 		  	var newPassw = $('input#Password-text');
 
+		  	 //In phase2, instead of changing text in HTML, it will change data in database
 			$('p#FacultyName').html(newfac.val());
 			$('p#yearStudy').html(newyear.val());
 			$('p#passW').html(newPassw.val());
@@ -29,7 +31,7 @@ $('#EditProfile').on('show.bs.modal', function (event) {
 
 $(document).on('click', '#deleteUserButton', function(){
 	alert('Delete user!');
-	//redirect to another page
+	//In phase2, some code will be added here to delete data in database
 })
 
 

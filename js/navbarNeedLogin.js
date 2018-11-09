@@ -59,3 +59,4 @@ function navBarIsLogin(login, username){
 
 var login = false;
 navBarIsLogin(login, "user");
+// because we cannot identify the user identity, we choose to display username like this

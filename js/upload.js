@@ -1,3 +1,7 @@
+// create a new file and will store file info in phase2
+
+/*****************************Hardcode Part for Phase1***************************************/
+
 const FileInfo = function(dept, courseNumber, year, term, file){
 	this.dept = dept;
 	this.courseNumber = courseNumber;
@@ -7,6 +11,9 @@ const FileInfo = function(dept, courseNumber, year, term, file){
 	this.file = file;
 	this.uploadTime = new Date();
 }
+
+/*****************************End of Hardcode***************************************/
+
 
 var dept, courseNumber, year, term, file;
 

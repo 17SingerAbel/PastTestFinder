@@ -1,3 +1,8 @@
+// hard code all courses in phase 1
+// after click search button, it will only go to csc309 course page for demo
+
+/*****************************Hardcode Part for Phase1***************************************/
+
 const courses = [];
 
 class Course {
@@ -13,6 +18,8 @@ class Course {
 
 courses.push(new Course('CSC','309'));
 courses.push(new Course('MAT','194'));
+
+/*****************************End of Hardcode***************************************/
 
 $('#searchBox').on('keypress', function(e) {
 	if (e.keyCode == 13) { 

@@ -1,0 +1,5 @@
+Some visual issues such as the PDFs appearing to spill out of the main container. There is also not a clear indication of who posts comments on the PDFs. An anonymous post seems to function identically to if I am logged in. User pages also have an "About" link that does nothing.
+
+I strongly suggest you implement other features for the final submission. I made this suggestion at the proposal and the site is still extremely simplistic.
+
+The admin features appear to be misplaced I should not need to search for a course before having access to the users as an admin. Users themselves should also be able to edit their password.

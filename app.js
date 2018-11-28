@@ -96,7 +96,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // Start the server
 app.set('port', (process.env.PORT || 3000));
-app.listen(app.get('port'), () => {
+app.listen(app.get('port'), '127.0.0.1', () => {
     log(`Listening on port ${app.get('port')}...`)
 });
 

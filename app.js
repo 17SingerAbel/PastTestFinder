@@ -22,10 +22,6 @@ const User = require('./models/user');
 // Express APP
 const app = express();
 
-// Set up routes
-const routes = require('./routes/index');
-// const users = require('./routes/users');
-
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', exphbs({defaultLayout:'layout', extname: '.hbs'}));
@@ -78,20 +74,27 @@ app.use(function (req, res, next) {
     next();
 });
 
-/* Our root routes:
+// Set up routes
+const root_routes = require('./routes/root_routes');
+const secondary_user_routes = require('./routes/secondary_user_routes');
+const secondary_admin_routes = require('./routes/secondary_admin_routes');
+
+/* Our routes:
+    /
     /login
     /register
+    /logout
+    /user/...
+    /admin/...
 */
-app.use('/', routes);
-
-// Not using secondary routes
-// app.use('/users', users);
+app.use('/', root_routes);
+app.use('/user', secondary_user_routes);
+app.use('/admin', secondary_admin_routes);
 
 // Password
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
 
 
 // Start the server

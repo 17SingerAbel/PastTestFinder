@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-// User page
+// admin route
 router.get('/', function(req, res){
-    res.render('login');
+    res.send('<h1>You are in admin route.</h1>');
 });
 
 module.exports = router;

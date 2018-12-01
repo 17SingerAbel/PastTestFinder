@@ -39,24 +39,3 @@ function isThreeDigits(str) {
 
 	return true;
 }
-
-function navBarIsLogin(login, username){
-	if(login){
-		$("#loginButton").hide();
-		$("#logoutButton").show();
-
-		$("#navBarUserName").html("Hello, "+ username + "!");
-		login = false;
-		console.log('ready to logout');
-	}
-	else{
-		$("#loginButton").show();
-		$("#logoutButton").hide();
-		login = true;
-		console.log("ready to login");
-	}
-}
-
-var login = false;
-navBarIsLogin(login, "user");
-// because we cannot identify the user identity, we choose to display username like this

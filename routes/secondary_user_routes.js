@@ -13,7 +13,7 @@ router.get('/', function(req, res){
 router.get('/upload', function (req, res) {
     res.render('upload', {
         title: 'Upload File',
-        js: ['upload.js', 'navbarHaveLogin.js'],
+        js: ['upload.js', 'navbarNeedLogin.js'],
     });
 });
 
@@ -38,7 +38,7 @@ router.post('/upload', function(req, res){
     if (errors) {
         res.render('upload', {
             title: 'Upload File',
-            js: ['upload.js', 'navbarHaveLogin.js'],
+            js: ['upload.js', 'navbarNeedLogin.js'],
             errors: errors,
         });
     }
@@ -54,15 +54,14 @@ router.post('/upload', function(req, res){
 
     	log(solution);
 
-  //   	solution.save().then((result) => {
-		// 	// Save and send object that was saved
-		// 	res.send(result);
-		// }, (error) => {
-		// 	res.status(400).send(error); // 400 for bad request
-		// })
-
-        // req.flash('success_msg', 'You are successfully uploaded the file.');
-    	res.redirect('/user/');
+    	solution.save().then((result) => {
+			// Save and send object that was saved
+			req.flash('success_msg', 'You have successfully uploaded the file.');
+			// res.send(result);
+			res.redirect('/user/upload');
+		}, (error) => {
+			res.status(400).send(error); // 400 for bad request
+		})
     }
 });
 

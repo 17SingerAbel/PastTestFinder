@@ -66,3 +66,8 @@ router.post('/upload', function(req, res){
 });
 
 module.exports = router;
+
+// to do list
+// 1. only user can upload file, have to login
+// 2. file need to save user info, such as userid username
+// 3. how to save file, not just a string

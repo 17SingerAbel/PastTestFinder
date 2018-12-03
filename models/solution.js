@@ -23,9 +23,11 @@ const SolutionSchema = new Schema({
     author :{
     	type: String
     },
-    fileId :{
-    	type: String
-    }
+    // fileId :{
+    // 	type: String 
+    // }
+    file: 
+      { data: Buffer, name: String, contentType: String }
 });
 
 

@@ -20,35 +20,36 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 //
 pdfjsLib.getDocument(url).then(getPdfPastTest);
 
+
 function getPdfPastTest(pdf) {
-  totalNumberOfPages = pdf.numPages;
-  const index = document.querySelector('#page');
-  index.innerText = `Page: ${currentPageNum}/${totalNumberOfPages}`
-  // console.log(pdf.getMetadata());
-  //
-  // Fetch the first page
-  //
-  pdf.getPage(currentPageNum).then(function getPageHelloWorld(page) {
+    totalNumberOfPages = pdf.numPages;
+    const index = document.querySelector('#page');
+    index.innerText = `Page: ${currentPageNum}/${totalNumberOfPages}`
+    // console.log(pdf.getMetadata());
+    //
+    // Fetch the first page
+    //
+    pdf.getPage(currentPageNum).then(function getPageHelloWorld(page) {
 
-    var viewport = page.getViewport(scale);
+      var viewport = page.getViewport(scale);
 
-    //
-    // Prepare canvas using PDF page dimensions
-    //
-    var canvas = document.getElementById('the-canvas');
-    var context = canvas.getContext('2d');
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
+      //
+      // Prepare canvas using PDF page dimensions
+      //
+      var canvas = document.getElementById('the-canvas');
+      var context = canvas.getContext('2d');
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
 
-    //
-    // Render PDF page into canvas context
-    //
-    var renderContext = {
-      canvasContext: context,
-      viewport: viewport
-    };
-    page.render(renderContext);
-  });
+      //
+      // Render PDF page into canvas context
+      //
+      var renderContext = {
+        canvasContext: context,
+        viewport: viewport
+      };
+      page.render(renderContext);
+    });
 }
 
 const prevPage = function (e) {

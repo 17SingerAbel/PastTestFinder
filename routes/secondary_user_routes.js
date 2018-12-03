@@ -33,40 +33,51 @@ router.get('/upload', function (req, res) {
 
 router.post('/upload', upload.single('file'), function(req, res){
 
-	// const file = req.body.file;
-    const dept = req.body.dept;
-    const courseNumber = req.body.courseNumber;
-    const year = req.body.year == "Select" ? "" : req.body.year;
-    const term = req.body.term == "Select" ? "" : req.body.term;
-    // const uploadTime = new Date();
-    log(req.file);
-     
+    var errors = [];
+    var dept, courseNumber, year, term;
 
-    // Validate fields
-    req.checkBody('dept', 'Department code is required.').not().equals("Select");
-    req.checkBody('courseNumber', 'Course number is between 100-499.').isInt({ min: 100, max: 499 });
-
-    const errors = req.validationErrors();
-
-    if(!req.file){
-        const new_error =  { 
-            location: 'file',
-            param: 'file',
-            msg: 'Please upload the PDF file.',
+    if(!req.isAuthenticated()){
+        const login_error =  { 
+            msg: 'Please login before uploading your file.',
             value: '' };
-        errors.unshift(new_error);
+        errors.push(login_error);
 
     } else{
-        const extension = (path.extname(req.file.originalname)).toLowerCase();
-        if(extension !== '.pdf'){
-            const extention_error =  { 
-                location: 'file',
+        dept = req.body.dept;
+        courseNumber = req.body.courseNumber;
+        year = req.body.year == "Select" ? "" : req.body.year;
+        term = req.body.term == "Select" ? "" : req.body.term;
+
+        // const uploadTime = new Date();
+
+        // log(req.file);
+
+        // Validate fields
+        req.checkBody('dept', 'Department code is required.').not().equals("Select");
+        req.checkBody('courseNumber', 'Course number is between 100-499.').isInt({ min: 100, max: 499 });
+
+        errors = req.validationErrors();
+
+        if(!req.file){
+            const new_error =  {
                 param: 'file',
-                msg: "PDF file is required. Must end with '.pdf'!",
+                msg: 'Please upload the PDF file.',
                 value: '' };
-            errors.unshift(extention_error);
+            errors.unshift(new_error);
+
+        } else{
+            const extension = (path.extname(req.file.originalname)).toLowerCase();
+            if(extension !== '.pdf'){
+                const extention_error =  { 
+                    // location: 'file',
+                    param: 'file',
+                    msg: "PDF file is required. Must end with '.pdf'!",
+                    value: '' };
+                errors.unshift(extention_error);
+            }
         }
     }
+
 
     if (errors) {
         res.render('upload', {
@@ -85,14 +96,15 @@ router.post('/upload', upload.single('file'), function(req, res){
     		dept: dept,
     		courseNumber: courseNumber,
     		year: year,
-    		term: term
+    		term: term,
+            author: req.user.username
     	});
 
         solution.file.data = file_data;
         solution.file.name = file_name;
         solution.file.contentType = 'pdf';
 
-    	log(solution);
+    	// log(solution);
 
     	solution.save().then((result) => {
 			// Save and send object that was saved
@@ -106,7 +118,3 @@ router.post('/upload', upload.single('file'), function(req, res){
 });
 
 module.exports = router;
-
-// to do list
-// 1. only user can upload file, have to login
-// 2. file need to save user info, such as userid username

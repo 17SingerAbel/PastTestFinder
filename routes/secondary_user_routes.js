@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Comment = require('../models/comment');
+const Comments = require('../models/comments');
 const { check } = require('express-validator/check');
 
 const log = console.log;
@@ -12,55 +12,70 @@ router.get('/', function(req, res){
 });
 
 router.get('/pt-comments', function(req,res){
-	res.render('pt-comments', {
-        title: 'Solution and Comments',
-        css: ['pt_comments.css'],
-        js: ['pt_comments.js', 'navbarNeedLogin.js']
-    });
+
+    Comments.find().then((comments) => {
+        // res.send(restaurant); // put in object in case we want to add other properties
+        log(comments)
+
+        res.render('pt-comments', {
+            title: 'Solution and Comments',
+            css: ['pt_comments.css'],
+            js: ['pt_comments.js', 'navbarNeedLogin.js']
+        });
+
+    }, (error) => {
+        res.status(400).send(error);
+    })
+
+	
 })
 
 router.post('/pt-comments', function(req,res){
 
 	var username, context;
 	var errors = [];
-	log(req.user)
-
-	log(req.body)
 
 	if(!req.isAuthenticated()){
         const login_error =  { 
-            msg: 'Please login before leaving a comment.',
+            msg: 'Please login before leaving your comments.',
             value: '' };
         errors.push(login_error);
 
     } else{
     	username = req.user.username;
     	context = req.body.context;
-    	log("auth true")
 
         // Validate fields
-        req.checkBody('context', 'Context of comment is required.').notEmpty();
+        req.checkBody('context', 'Context of comments is required.').notEmpty();
 
         errors = req.validationErrors();
 
     }
 
     if (errors) {
-        // res.render('upload', {
-        //     title: 'Upload File',
-        //     js: ['upload.js', 'navbarNeedLogin.js'],
-        //     errors: errors,
-        // });
-        log("there are errors")
-        res.send(errors)
+        res.render('pt-comments', {
+            title: 'Solution and Comments',
+            css: ['pt_comments.css'],
+            js: ['pt_comments.js', 'navbarNeedLogin.js'],
+            errors: errors
+        });
+        // res.send(errors)
+
     } else{
 
-    	const new_comment = new Comment({
+    	const new_comments = new Comments({
 	    	username: username,
 	    	context: context
 	    });
 
-	    res.send(new_comment);
+        new_comments.save().then((result) => {
+            // Save and send object that was saved
+            req.flash('success_msg', 'You have successfully left your comments.');
+            res.redirect('/user/pt-comments');
+
+        }, (error) => {
+            res.status(400).send(error); // 400 for bad request
+        })
     }
 
 	

@@ -83,6 +83,7 @@ downloadButton.href = url;
 //
 // Delete comments
 //
+
 const commentsDiv = document.querySelector('#comments');
 commentsDiv.addEventListener('click', removeComment);
 function removeComment(e) {

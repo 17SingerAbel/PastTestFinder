@@ -14,15 +14,12 @@ router.get('/', function(req, res){
 router.get('/pt-comments', function(req,res){
 
     Comments.find().then((comments) => {
-        // res.send(restaurant); // put in object in case we want to add other properties
-        log(comments)
-
         res.render('pt-comments', {
             title: 'Solution and Comments',
             css: ['pt_comments.css'],
-            js: ['pt_comments.js', 'navbarNeedLogin.js']
+            js: ['pt_comments.js', 'navbarNeedLogin.js'],
+            comments: comments
         });
-
     }, (error) => {
         res.status(400).send(error);
     })
@@ -53,13 +50,18 @@ router.post('/pt-comments', function(req,res){
     }
 
     if (errors) {
-        res.render('pt-comments', {
-            title: 'Solution and Comments',
-            css: ['pt_comments.css'],
-            js: ['pt_comments.js', 'navbarNeedLogin.js'],
-            errors: errors
-        });
-        // res.send(errors)
+
+        Comments.find().then((comments) => {
+            res.render('pt-comments', {
+                title: 'Solution and Comments',
+                css: ['pt_comments.css'],
+                js: ['pt_comments.js', 'navbarNeedLogin.js'],
+                comments: comments,
+                errors: errors
+            });
+        }, (error) => {
+            res.status(400).send(error);
+        })
 
     } else{
 

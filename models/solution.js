@@ -1,39 +1,34 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const passportLocalMongoose = require("passport-local-mongoose");
 
 const SolutionSchema = new Schema({
-    courseName: {
+    dept: {
         type: String
+    },
+    courseNumber:{
+        type: Number
     },
     year: {
         type: Number
     },
     term :{
     	type: String
-
     },
     type :{
     	type: String
-
     },
     professor :{
     	type: String
-
     },
     author :{
     	type: String
-
     },
-    fileId :{
-    	type: String
-
-    }
+    // fileId :{
+    // 	type: String
+    // }
+    file:
+        {data: Buffer, name: String, contentType: String}
 });
 
-SolutionSchema.plugin(passportLocalMongoose);
-
-const Solution = mongoose.model("Solution", SolutionSchema);
-
-module.exports = { Solution };
+module.exports = mongoose.model("Solution", SolutionSchema);
 

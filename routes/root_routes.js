@@ -22,6 +22,7 @@ router.get('/login', isLoggedIn, function (req, res) {
     });
 });
 
+
 router.get('/register', isLoggedIn, function (req, res) {
     res.render('register', {
         title: 'Register',

@@ -79,6 +79,7 @@ const root_routes = require('./routes/root_routes');
 const secondary_user_routes = require('./routes/secondary_user_routes');
 const secondary_admin_routes = require('./routes/secondary_admin_routes');
 
+const display_routes = require('./routes/display_routes')
 /* Our routes:
     /
     /login
@@ -87,9 +88,12 @@ const secondary_admin_routes = require('./routes/secondary_admin_routes');
     /user/...
     /admin/...
 */
+
+
 app.use('/', root_routes);
 app.use('/user', secondary_user_routes);
 app.use('/admin', secondary_admin_routes);
+app.use('/user/display', display_routes);
 
 // Password
 passport.use(new LocalStrategy(User.authenticate()));

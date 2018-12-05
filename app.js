@@ -19,6 +19,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const { mongoose } = require('./db/mongoose');
 const User = require('./models/user');
 
+//const User_claire = require('./models/user_claire');
 // Express APP
 const app = express();
 
@@ -61,16 +62,25 @@ app.use(expressValidator({
 }));
 
 // Global variables
+
 app.use(function (req, res, next) {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
-    res.locals.user = req.user ? req.user.username : null;
+    res.locals.user = req.user? req.user.username : null;
+
+    /************************/
+    res.locals.faculty = req.user ? req.user.faculty : null;
+    res.locals.year = req.user ? req.user.year : null;
+    
+    /*************************/
+
     res.locals.need_nav_search = false;
     const url = req.originalUrl;
     if (url === '/login' || url === '/register') {
         res.locals.need_nav_search = true;
     }
+     
     next();
 });
 

@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+// const passportLocalMongoose = require("passport-local-mongoose");
 
 const SolutionSchema = new Schema({
+    
     dept: {
         type: String
     },
@@ -12,23 +14,30 @@ const SolutionSchema = new Schema({
         type: Number
     },
     term :{
-    	type: String
+        type: String
     },
     type :{
-    	type: String
+        type: String
     },
     professor :{
-    	type: String
+        type: String
     },
     author :{
-    	type: String
+        type: String
     },
-    // fileId :{
-    // 	type: String
-    // }
-    file:
-        {data: Buffer, name: String, contentType: String}
+    fileId :{
+        type: String
+    }
+    // file:
+    //     {data: Buffer, name: String, contentType: String}
 });
 
+// UserSchema.plugin(passportLocalMongoose);
+
 module.exports = mongoose.model("Solution", SolutionSchema);
+
+
+
+
+
 

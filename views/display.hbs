@@ -49,28 +49,31 @@
      
     </div>
      <button onclick="filterSolutions()" id="filterButton" type="button" class="btn btn-secondary btn-sm">Apply Filters</button>
-  </div>
+  </div>  
       
 
-    <div id="displayTableContainer" class="container">
-      <table id='display-table' class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Solutions</th>
-            <th scope="col">Username</th>
-            <th scope="col"> </th>
+  <div id="displayTableContainer" class="container">
+    <table id='display-table' class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Solutions</th>
+          <th scope="col">Username</th>
+          <th scope="col"> </th>
+        </tr>
+      </thead>
+      <tbody class="tableBody">
+        <tr></tr>
+        {{#each solutions}}
+          <tr> 
+            <th scope="row">{{@index}}</th>
+            <td><a href='/user/pt-comment/{{_id}}'> {{fileId}} </a></td> 
+            <td> {{author}} </td> 
           </tr>
-        </thead>
-        <tbody class="tableBody">
-          <tr></tr>
-        </tbody>
-      </table>
-    </div>
+        {{/each}}
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/display.js"></script>
-    <script type="text/javascript" src="js/navbar.js"></script>
+      </tbody>
+    </table>
+  </div>
+
 

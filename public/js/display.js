@@ -1,4 +1,4 @@
-// "use strict"
+"use strict"
 
 // // This file is similar to the "display.js" in master/user/js folder, more comments are made in that file
 // //This file will be merged to the file mentioned before in Phase2. 
@@ -31,11 +31,37 @@
 
 // /********************************************************************/
 
-// const tableContainer = document.querySelector('#displayTableContainer')
-// const table = tableContainer.getElementsByClassName("table table-striped")[0]
-// const tableBody = table.getElementsByClassName('tableBody')[0]
-// // const filterContainer = document.querySelector('#filterContainer')
-// tableContainer.addEventListener('click', deleteSolutionFromTable);
+const tableContainer = document.querySelector('#displayTableContainer')
+const table = tableContainer.getElementsByClassName("table table-striped")[0]
+const tableBody = table.getElementsByClassName('tableBody')[0]
+// const filterContainer = document.querySelector('#filterContainer')
+tableContainer.addEventListener('click', deleteSolutionFromTable);
+
+function handleSubmission(){
+	let yearSelector = document.querySelector('#deptSelectorYear')
+	let year = yearSelector.options[yearSelector.selectedIndex].text
+	let typeSelector = document.querySelector('#deptSelectorType')
+	let type = typeSelector.options[typeSelector.selectedIndex].text
+	let profSelector = document.querySelector('#deptSelectorProf')
+    let prof = profSelector.options[profSelector.selectedIndex].text
+    prof = prof.replace(" ", "%20")
+	let termSelector = document.querySelector('#deptSelectorTerm')
+    let term = termSelector.options[termSelector.selectedIndex].text
+    let courseCode = document.querySelector('.selectForm').action
+    console.log(year)
+    console.log(prof)
+    console.log(courseCode)
+
+    const url = `${courseCode}/${year}/${term}/${type}/${prof}`;
+    window.location.href = url
+    console.log(url)
+    let submitButton = document.querySelector('#submitButton')
+    submitButton.action = url
+    
+    // const Http = new XMLHttpRequest();
+    // Http.open("GET", url)
+    // Http.open();
+}
 
 // function searchUsername(username) {
 // 	//Phase2: compare with data obtained from server

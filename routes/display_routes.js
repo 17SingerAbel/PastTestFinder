@@ -27,24 +27,13 @@ router.get('/:courseCode', function(req, res){
 		if(!solutions) {
 			res.status(404).send()
 		} else {
-			// let solutions = { solutions }
-			// const year = 2016
-			// const term = 'Fall'
-			// const type = 'Midterm'
-			// const professor = 'Ken Jackson'
 
-			// let filteredSolutions = solutions.filter(soln =>{
-			// 	if (year === soln.year && term === soln.term && type ===  soln.type && professor === soln.professor) {
-			// 		return soln
-			// 	}
-
-			// })
-			// console.log(filteredSolutions)
 			res.render('display', {
 	        title: 'Display',
 	        css: ['display.css'],
 	        js: ['display.js'],
-	        solutions: solutions
+			solutions: solutions,
+			courseCode: courseCode
     		});
 		}
 
@@ -55,12 +44,46 @@ router.get('/:courseCode', function(req, res){
 })
 
 
-router.post('/:cousrseCode/filter', function(req, res) {
-	const year = req.body.year;
-	const term = req.body.term;
-	const type = req.body.type;
-	const professor = req.body.professor;
 
+// /user/display/CSC309/2016/Winter/Midterm/Ken%20Jackson
+router.get('/:courseCode/:year?/:term:?/:type?/:prof?', function(req, res) {
+
+	const year = parseInt(req.params.year, 10);
+	console.log(year)
+	const term = req.params.term;
+	const type = req.params.type;
+	const professor = req.params.prof;
+
+	const courseCode = req.params.courseCode
+	console.log(courseCode)
+	const dept = courseCode.slice(0, 3)
+	const courseNumber = parseInt(courseCode.slice(3, 6), 10)
+
+	Solution.find({dept:dept, courseNumber: courseNumber}).then((solutions) => {
+		if(!solutions) {
+			res.status(404).send()
+			console.log("GG")
+		} else {
+			let filteredSolutions = solutions.filter(soln =>{
+				console.log(year === soln.year)
+				if (year == soln.year && term == soln.term && type ==  soln.type && professor == soln.professor) {
+					return soln
+				}
+
+			})
+			console.log(filteredSolutions)
+			res.render('display', {
+	        title: 'Display',
+	        css: ['display.css'],
+	        js: ['display.js'],
+			solutions: filteredSolutions,
+			courseCode: courseCode
+    		});
+		}
+
+	}, (error) =>{
+		res.status(400).send(error)
+	})
 	
 })
 // router.get('/user/pt-comment/:_id', function(req, res){

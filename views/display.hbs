@@ -2,7 +2,7 @@
 <div id="filterContainer" class="container" >
     <form class="col-12">
       <div class="form-row">
-        <h1> <strong> CSC309 </strong></h1>
+        <h1> <strong> {{courseCode}} </strong></h1>
       </div>
     </form>
 <!--   </div> -->
@@ -20,24 +20,29 @@
       </div>
 
       <div id="selectTermButton" class="form-group filterSize ">
+        <form action="/user/display/{{courseCode}}" method="GET" class="selectForm">
         <label for="deptSelector" class="col-sm-3"></label>
         <select class="form-control col-sm-9" id="deptSelectorTerm">
           <option>Term</option>
           <option>Fall</option>
           <option>Winter</option>
         </select>
+        </form>
       </div>
-
+ 
       <div id="selectTypeButton" class="form-group filterSize ">
+        <form action="/user/display/{{courseCode}}" method="GET" class="selectForm"></form>
         <label for="deptSelector" class="col-sm-3"></label>
         <select class="form-control col-sm-9" id="deptSelectorType">
           <option>Type</option>
           <option>Midterm</option>
           <option>Final</option>
         </select>
+        </form>
       </div>
 
       <div id="selectProfessorButton" class="form-group filterSizeProf" >
+        <form action="/user/display/{{courseCode}}" method="GET" class="selectForm"></form>
         <label for="deptSelector" class="col-sm-3"></label>
         <select class="form-control col-sm-9" id="deptSelectorProf">
           <option>Professor</option>
@@ -45,10 +50,13 @@
           <option>Steven Enagle</option>
           <option>David Liu</option>
         </select>
+        </form>
       </div>
      
     </div>
-     <button onclick="filterSolutions()" id="filterButton" type="button" class="btn btn-secondary btn-sm">Apply Filters</button>
+    <form action="#" method="GET" id="submitButton">
+     <button onclick="handleSubmission()" id="filterButton" type="button" class="btn btn-secondary btn-sm">Apply Filters</button>
+    </form>
   </div>  
       
 

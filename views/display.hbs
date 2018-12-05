@@ -67,6 +67,10 @@
           <th scope="col">#</th>
           <th scope="col">Solutions</th>
           <th scope="col">Username</th>
+          <th scope="col">Year</th>
+          <th scope="col">Term</th>
+          <th scope="col">Type</th>
+          <th scope="col">Professor</th>
           <th scope="col"> </th>
         </tr>
       </thead>
@@ -77,6 +81,10 @@
             <th scope="row">{{@index}}</th>
             <td><a href='/user/pt-comment/{{_id}}'> {{fileId}} </a></td> 
             <td> {{author}} </td> 
+            <td> {{year}}</td>
+            <td>{{term}}</td>
+            <td>{{type}}</td>
+            <td>{{professor}}</td>
           </tr>
         {{/each}}
 

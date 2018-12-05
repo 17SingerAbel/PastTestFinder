@@ -45,38 +45,35 @@ router.get('/:courseCode', function(req, res){
 
 
 
-// /user/display/CSC309/2016/Winter/Midterm/Ken%20Jackson
 router.get('/:courseCode/:year?/:term:?/:type?/:prof?', function(req, res) {
-
-	const year = parseInt(req.params.year, 10);
-	console.log(year)
-	const term = req.params.term;
-	const type = req.params.type;
-	const professor = req.params.prof;
-
 	const courseCode = req.params.courseCode
 	console.log(courseCode)
 	const dept = courseCode.slice(0, 3)
 	const courseNumber = parseInt(courseCode.slice(3, 6), 10)
 
-	Solution.find({dept:dept, courseNumber: courseNumber}).then((solutions) => {
+	let filter = {dept:dept, courseNumber: courseNumber}
+	let year = req.params.year
+	const term = req.params.term;
+	const type = req.params.type;
+	const professor = req.params.prof;
+
+	if (year != "Year") filter.year = year
+	if (term != "Term") filter.term = term
+	if (type != "Type") filter.type = type
+	if (professor != "Professor") filter.professor = professor 
+	// year = parseInt(year, 10)
+
+
+	Solution.find(filter).then((solutions) => {
 		if(!solutions) {
 			res.status(404).send()
 			console.log("GG")
 		} else {
-			let filteredSolutions = solutions.filter(soln =>{
-				console.log(year === soln.year)
-				if (year == soln.year && term == soln.term && type ==  soln.type && professor == soln.professor) {
-					return soln
-				}
-
-			})
-			console.log(filteredSolutions)
 			res.render('display', {
 	        title: 'Display',
 	        css: ['display.css'],
 	        js: ['display.js'],
-			solutions: filteredSolutions,
+			solutions: solutions,
 			courseCode: courseCode
     		});
 		}

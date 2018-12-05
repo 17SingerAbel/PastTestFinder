@@ -158,6 +158,9 @@ app.use('/', root_routes);
 app.use('/user', secondary_user_routes);
 app.use('/admin', secondary_admin_routes);
 app.use('/user/display', display_routes);
+app.use('/admin/display', display_routes);
+
+
 
 // Password
 passport.use(new LocalStrategy(User.authenticate()));

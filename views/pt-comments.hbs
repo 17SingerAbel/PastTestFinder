@@ -1,6 +1,6 @@
 <div class="center">
 
-    <div id="pdf-buttons" class="m-2">
+    <div id="pdf-buttons" class="ml-3 mt-3">
         <button id="pdf-prev" class="btn btn-outline-secondary btn-sm">Previous</button>
         <button id="pdf-next" class="btn btn-outline-secondary btn-sm">Next</button>
         <button id="pdf-smaller" class="btn btn-outline-dark btn-sm">-</button>
@@ -11,13 +11,12 @@
 
     <canvas id="the-canvas" class="m-3"></canvas>
 
-    <p>
-        <a class="btn btn-primary mt-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Add new comments
-        </a>
-    </p>
+    <a class="btn btn-primary mt-3" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Add Comments
+    </a>
+    
 
-    <div class="collapse" id="collapseExample">
+    <div class="collapse m-3" id="collapseExample">
         <div class="card card-body">
             <form method="post" action={{url}}>
               <div class="form-group">
@@ -26,24 +25,24 @@
               <button id="comment-submit-btn" class="btn btn-success" type="submit">Submit</button>
             </form>
         </div>
-        <br>
+        
     </div>
 
     {{#if success_msg}}
-      <div class="alert alert-success card">{{success_msg}}</div>
+      <div class="alert alert-success card m-3">{{success_msg}}</div>
     {{/if}}
 
     {{#if error_msg}}
-      <div class="alert alert-danger card">{{error_msg}}</div>
+      <div class="alert alert-danger card m-3">{{error_msg}}</div>
     {{/if}}
 
     {{#if errors}}
       {{#each errors}}
-          <div class="alert alert-danger card">{{msg}}</div>
+          <div class="alert alert-danger card m-3">{{msg}}</div>
       {{/each}}
     {{/if}}
 
-    <div id="comments" class="card">
+    <div id="comments" class="card m-3">
         <div class="card-header">
             Comments
         </div>
@@ -54,7 +53,7 @@
                     <p>{{this.context}}</p>
                     <footer class="blockquote-footer">
                         <cite title="Source Title">{{this.username}}</cite>
-                        <button class="delete-comment btn btn-danger" id="{{this._id}}">Delete</button>
+                        <button class="delete-comment btn btn-danger btn-sm ml-1" id="{{this._id}}">Delete</button>
                     </footer>
                 </blockquote>
             </div>

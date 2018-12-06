@@ -36,6 +36,8 @@ const table = tableContainer.getElementsByClassName("table table-striped")[0]
 const tableBody = table.getElementsByClassName('tableBody')[0]
 // const filterContainer = document.querySelector('#filterContainer')
 tableContainer.addEventListener('click', deleteSolutionFromTable);
+tableContainer.addEventListener('click', jumpToSolution);
+tableContainer.addEventListener('click', jumpToUserLink);
 
 function handleSubmission(){
 	let yearSelector = document.querySelector('#deptSelectorYear')
@@ -58,6 +60,33 @@ function handleSubmission(){
     let submitButton = document.querySelector('#submitButton')
     submitButton.action = url
 }
+
+function jumpToSolution(e){
+	e.preventDefault();
+	if(e.target.classList.contains("click")) {
+        const td= e.target.parentElement.parentElement.getElementsByTagName('td')[0];
+        console.log(td)
+        const url = td.getElementsByTagName("a")[0].href
+        window.location.href = url
+	} 
+}
+
+function jumpToUserLink(e){
+	e.preventDefault();
+	if(e.target.classList.contains("userClick")) {
+        const td= e.target.parentElement.parentElement.getElementsByTagName('td')[1];
+        console.log(td)
+        const url = td.getElementsByTagName("a")[0].href
+        window.location.href = url
+	} 
+}
+
+
+// tableBody.on("click", "td", jumpToSlution());
+
+// function jumpToSlution()
+// var url = "http://dbpedia.org/sparql";
+
 
 // function searchUsername(username) {
 // 	//Phase2: compare with data obtained from server

@@ -57,10 +57,6 @@ function handleSubmission(){
     console.log(url)
     let submitButton = document.querySelector('#submitButton')
     submitButton.action = url
-    
-    // const Http = new XMLHttpRequest();
-    // Http.open("GET", url)
-    // Http.open();
 }
 
 // function searchUsername(username) {
@@ -119,73 +115,48 @@ function handleSubmission(){
 // 	}
 // }
 
-// //Phase2: Delete the file based on the file's name and author from server
-// function deleteSolutionFromTable(e){
-// 	e.preventDefault();
-// 	if(e.target.classList.contains("delete-row")) {
-// 		let user = e.target.parentElement.parentElement.getElementsByTagName('td')[1].textContent;
-// 		const solution = searchUsername(user)
-// 		removeSolutionFromTable(solution)
-// 	} 
-// }
+//Phase2: Delete the file based on the file's name and author from server
+function deleteSolutionFromTable(e){
+	e.preventDefault();
+	if(e.target.classList.contains("delete-row")) {
+        let url = '/admin/display/delete/';
+        // console.log(e.target.parentElement.parentElement.getElementsByTagName('td'))
+        const id = e.target.parentElement.parentElement.getElementsByTagName('td')[6].textContent;
+        url = url + id
+        console.log(url)
+        let data = {
+            id: id
+        }
+        const request = new Request(url, {
+            method: 'delete',
+            body: JSON.stringify(data),
+            headers: {
+                'Accept': 'application/json, test/plain, */*',
+                'Content-Type': 'application/json'
+            },
+        })
+        fetch(request)
+        .then(function(res) {
+            if(res.status === 200) {
+                let rows = tableBody.getElementsByTagName('tr');
+                let count  = rows.length;
+                let targetRow = -1
+                	for (let i = 1; i < count; i++) {
+                        console.log(tableBody.getElementsByTagName('tr')[i].getElementsByTagName('td')[6])
+                		let each_id = tableBody.getElementsByTagName('tr')[i].getElementsByTagName('td')[6].textContent;
+                		if (each_id === id) { 
+                			targetRow = i
+                		}
+                	}
+                console.log(count)
+                tableBody.deleteRow(targetRow)
+            }
+        })
+	} 
+}
 
-// function removeSolutionFromTable(solution) {
-// 	let targetRow = -1
-// 	// deleteSolutionFromList(solution)
-// 	for (let i = 1; i < numberOfTemp + 1; i++) {
-// 		let user = tableBody.getElementsByTagName('tr')[i].getElementsByTagName('td')[1].textContent;
-// 		if (user === solution.author) { 
-// 			targetRow = i
-// 		}
-// 	}
-
-// 	let targetIndex = -1;
-// 	for (let j =0; j<numberOfSolutions; j++) {
-// 		if (solution.author === solutionList[j].author) {
-// 			targetIndex = j
-// 		}
-// 	}
-
-// 	solutionList.splice(targetIndex, 1)
-// 	console.log(solutionList)
-// 	numberOfSolutions = numberOfSolutions - 1
-// 	numberOfTemp -= 1
-// 	tableBody.deleteRow(targetRow)
-// }
 // /********************************************************************/
 
-// function addSolutions() {
-// 	const url = '/user/display/CSC309';
-// 	const request = new Request(url, {
-// 		method: 'get'
-// 	})
-
-// 	fetch(request)
-//     .then((res) => { 
-//     	console.log(res)
-//         if (res.status === 200) {
-//            return res.json() 
-//        } else {
-//             alert('Could not get posts')
-//        }                
-//     })
-//     .then((json) => {
-//     	// Had tableBody
-//     	let row = 0
-//     	json.post.map((solution) => {
-// 			let name = solution.fileId
-// 			let author = solution.author
-// 			$('.tableBody tr:last').after('<tr> \
-// 	        <th scope="row">' + row + '</th> \
-// 	        <td><a class="fileName" href="login.html">'+ name + '</a></td> \
-// 	        <td><a class="authorLink" href="#">'+ author + '</td> \
-// 	      	</tr>');
-// 	      	row = row + 1
-//     	})
-//     }).catch((error) => {
-//         console.log(error)
-//     })
-// }
 
 // Phase2: User will be redirected to different type of page based on their
 // type(user or admin)

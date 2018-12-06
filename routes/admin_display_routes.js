@@ -3,11 +3,11 @@ const router = express.Router();
 
 const Solution = require('../models/solution')
 const handlebars = require('handlebars')
-
+const { ObjectID } = require('mongodb')
 // user route
 router.get('/', function(req, res){
-    res.render('display', {
-        title: 'Display',
+    res.render('admin_display', {
+        title: 'Admin Display',
         css: ['display.css'],
         js: ['display.js'],
     });
@@ -35,8 +35,8 @@ router.get('/:courseCode', function(req, res){
 			// console.log(yearColumn)
 			// console.log(termColumn)
 			// console.log(professorColumn)
-			res.render('display', {
-	        title: 'Display',
+			res.render('admin_display', {
+	        title: 'Admin Display',
 	        css: ['display.css'],
 	        js: ['display.js'],
 			solutions: solutions,
@@ -52,8 +52,6 @@ router.get('/:courseCode', function(req, res){
 	})
 	// res.send({solutionList})
 })
-
-
 
 router.get('/:courseCode/:year?/:term:?/:type?/:prof?', function(req, res) {
 	const courseCode = req.params.courseCode
@@ -92,8 +90,8 @@ router.get('/:courseCode/:year?/:term:?/:type?/:prof?', function(req, res) {
 					console.log(termColumn)
 					console.log(professorColumn)
 			})
-			res.render('display', {
-	        title: 'Display',
+			res.render('admin_display', {
+	        title: 'Admin Display',
 	        css: ['display.css'],
 	        js: ['display.js'],
 			solutions: solutions,
@@ -109,9 +107,26 @@ router.get('/:courseCode/:year?/:term:?/:type?/:prof?', function(req, res) {
 	})
 	
 })
-// router.get('/user/pt-comment/:_id', function(req, res){
-// 	const id = req.params.id
-// 	res.redirect('/user/pt-comment/' + id)
-// })
+
+router.delete('/delete/:id', function(req, res){
+	const id = req.params.id
+	console.log(id)
+	if(!ObjectID.isValid(id)){
+		return res.status(404).send()
+	}
+	Solution.findByIdAndDelete(id).then((solution) =>{
+		if(!solution) {
+			res.status(404).send()
+		} else{
+			res.send({ solution })
+		}
+	}).catch((error) =>{
+		res.status(400).send(error)
+	})
+})
+router.get('/user/pt-comment/:_id', function(req, res){
+	const id = req.params.id
+	res.redirect('/user/pt-comment/' + id)
+})
 
 module.exports = router;

@@ -80,6 +80,7 @@ const secondary_user_routes = require('./routes/secondary_user_routes');
 const secondary_admin_routes = require('./routes/secondary_admin_routes');
 
 const display_routes = require('./routes/display_routes')
+const admin_display_routes = require('./routes/admin_display_routes')
 /* Our routes:
     /
     /login
@@ -158,7 +159,7 @@ app.use('/', root_routes);
 app.use('/user', secondary_user_routes);
 app.use('/admin', secondary_admin_routes);
 app.use('/user/display', display_routes);
-app.use('/admin/display', display_routes);
+app.use('/admin/display', admin_display_routes);
 
 
 

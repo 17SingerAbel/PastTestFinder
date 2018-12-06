@@ -69,7 +69,8 @@
           <th scope="col">Term</th>
           <th scope="col">Type</th>
           <th scope="col">Professor</th>
-          {{!-- <th scope="col"> </th> --}}
+          <th scope="col">fileId</th>
+          <th scope="col"> </th>
         </tr>
       </thead>
       <tbody class="tableBody">
@@ -83,6 +84,10 @@
             <td>{{term}}</td>
             <td>{{type}}</td>
             <td>{{professor}}</td>
+            <td>{{_id}}</td>
+            {{!-- <form class="deleteButton"> --}}
+            <td><button type="button" class="delete-row">delete</button></td>
+            {{!-- </form> --}}
           </tr>
         {{/each}}
 

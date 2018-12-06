@@ -1,0 +1,91 @@
+
+<div id="filterContainer" class="container" >
+    <form class="col-12">
+      <div class="form-row">
+        <h1> <strong> {{courseCode}} </strong></h1>
+      </div>
+    </form>
+<!--   </div> -->
+
+<!--     <div id="filterContainer" class="container" style="margin-top: 4%; width: 13%; margin-left: 1%"> -->
+  <div  class = "row offset-md-0 col-md-16">
+    <div id="selectYearButton" class="form-group filterSize">
+        <label for="deptSelector" class="col-sm-9"></label>
+        <select class="form-control  col-sm-9" id="deptSelectorYear">
+          {{#each yearColumn}}
+            <option>{{this}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div id="selectTermButton" class="form-group filterSize ">
+        <form action="/user/display/{{courseCode}}" method="GET" class="selectForm">
+        <label for="deptSelector" class="col-sm-3"></label>
+        <select class="form-control col-sm-9" id="deptSelectorTerm">
+          {{#each termColumn}}
+            <option>{{this}}</option>
+          {{/each}}
+        </select>
+        </form>
+      </div>
+ 
+      <div id="selectTypeButton" class="form-group filterSize ">
+        <form action="/user/display/{{courseCode}}" method="GET" class="selectForm"></form>
+        <label for="deptSelector" class="col-sm-3"></label>
+        <select class="form-control col-sm-9" id="deptSelectorType">
+          {{#each typeColumn}}
+            <option>{{this}}</option>
+          {{/each}}
+        </select>
+        </form>
+      </div>
+
+      <div id="selectProfessorButton" class="form-group filterSizeProf" >
+        <form action="/user/display/{{courseCode}}" method="GET" class="selectForm"></form>
+        <label for="deptSelector" class="col-sm-3"></label>
+        <select class="form-control col-sm-9" id="deptSelectorProf">
+          {{#each professorColumn}}
+            <option>{{this}}</option>
+          {{/each}}
+        </select>
+        </form>
+      </div>
+     
+    </div>
+    <form action="#" method="GET" id="submitButton">
+     <button onclick="handleSubmission()" id="filterButton" type="button" class="btn btn-secondary btn-sm">Apply Filters</button>
+    </form>
+  </div>  
+      
+
+  <div id="displayTableContainer" class="container">
+    <table id='display-table' class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Solutions</th>
+          <th scope="col">Username</th>
+          <th scope="col">Year</th>
+          <th scope="col">Term</th>
+          <th scope="col">Type</th>
+          <th scope="col">Professor</th>
+          {{!-- <th scope="col"> </th> --}}
+        </tr>
+      </thead>
+      <tbody class="tableBody">
+        <tr></tr>
+        {{#each solutions}}
+          <tr> 
+            <td><a class="click" href='/user/pt-comment/{{_id}}'>{{file.name}}</a></td> 
+            <td><a class="userClick" href='/user/profile/{{author}}'>{{author}}</a> </td> 
+            <td> {{year}}</td>
+            <td>{{term}}</td>
+            <td>{{type}}</td>
+            <td>{{professor}}</td>
+          </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
+  </div>
+
+

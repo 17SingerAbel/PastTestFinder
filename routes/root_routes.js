@@ -4,6 +4,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const passportLocalMongoose = require('passport-local-mongoose');
 const { User, Verification } = require('../models/user');
+const { Course } = require('../models/course');
 const randomstring = require("randomstring");
 const nodemailer = require('nodemailer');
 const aws = require('aws-sdk');
@@ -17,6 +18,8 @@ let transporter = nodemailer.createTransport({
         apiVersion: '2010-12-01'
     })
 });
+
+var initImg = 'https://image.flaticon.com/icons/png/512/552/552848.png'
 
 // Index page
 router.get('/', function (req, res) {
@@ -35,7 +38,7 @@ router.get('/login', isLoggedIn, function (req, res) {
     });
 });
 
-router.get('/register', function (req, res) {
+router.get('/register', isLoggedIn, function (req, res) {
     res.render('register', {
         title: 'Register',
         css: ['registerAndLogin.css'],
@@ -127,7 +130,8 @@ router.post('/register', function (req, res) {
             }
             return Promise.reject();
         }).then((true_code) => {
-            User.register(new User({username:req.body.username, }), req.body.password, function (err, user) {
+            User.register(new User({username:req.body.username, status: "user", faculty: "Unknown",
+                year: "Unknown", img_path:initImg} ), req.body.password, function (err, user) {
                 if (err) {
                     res.render('register', {
                         title: 'Register',
@@ -162,5 +166,25 @@ function isLoggedIn (req, res, next) {
     }
     res.redirect("/");
 }
+
+// JSON API
+// {
+//     "dept": "CSC",
+//     "courseNumber": 309
+// }
+router.post("/course", function (req, res) {
+    Course.find({
+        dept: req.body.dept,
+        courseNumber: req.body.courseNumber
+    }).then((course) => {
+        if (course.length == 0) {
+            res.status(404).send()
+        } else {
+            res.status(200).send()
+        }
+    }, (error) => {
+        res.status(400).send()
+    })
+});
 
 module.exports = router;

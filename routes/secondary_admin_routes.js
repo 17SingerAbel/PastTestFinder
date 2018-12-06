@@ -28,10 +28,10 @@ router.get('/pt-comments/:id', function(req,res){
             res.status(404).send()
         } else {
 
-            res.render('pt-comments', {
+            res.render('pt-comments_admin', {
                 title: 'Solution and Comments',
                 css: ['pt_comments.css'],
-                js: ['pt_comments.js', 'navbarNeedLogin.js'],
+                js: ['pt_comments_admin.js', 'navbarNeedLogin.js'],
                 comments: solution.comments
             });
         }
@@ -56,12 +56,6 @@ router.get('/solution-data/:id', function(req,res){
     })
     
 })
-
-
-
-// todo list:
-// 1. delete button for admin
-// 2. navbar true, but there are ids
 
 
 router.post('/pt-comments/:id', function(req,res){

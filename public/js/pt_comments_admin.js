@@ -1,6 +1,44 @@
 'use strict'
 
 const log = console.log;
+const commentsBody = document.getElementsByClassName('delete-comment');
+var buttonClicked;
+
+$(".delete-comment").click(function(e){
+    var buttonClicked = e.target;
+    const commentURLid = buttonClicked.id;
+    const solutionURLid = window.location.href.split("/")[5];
+
+    const request = new Request('/admin/delete-comments/' + solutionURLid + '/' + commentURLid, {
+            method: 'delete',
+            // body: JSON.stringify(data),
+            headers: {
+                'Accept': 'application/json, test/plain, */*',
+                'Content-Type': 'application/json'
+            },
+        })
+
+
+    fetch(request)
+    .then((res) => { 
+        if (res.status === 200) {
+           return res.json();
+       } else {
+            alert('Could not get comment data');
+       }                
+    })
+    .then((json) => {
+
+
+    }).catch((error) => {
+        console.log(error)
+    })
+
+    buttonClicked.parentElement.parentElement.parentElement.remove();
+
+});
+
+
 
 var currentPageNum = 1;
 var totalNumberOfPages = 0;

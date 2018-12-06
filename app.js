@@ -71,11 +71,6 @@ app.use(function (req, res, next) {
     if (url === '/login' || url === '/register') {
         res.locals.need_nav_search = true;
     }
-
-    if (url === '/user/pt-comments') {
-        res.locals.need_nav_search = true;
-    }
-
     next();
 });
 

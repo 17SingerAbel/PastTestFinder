@@ -1,11 +1,11 @@
-$(function() {
-  $("#searchButton").click(function(e) {
-    // e.preventDefault();
-    if(checkInputAtSearchBox($( "#searchBox" ).val())){
-    	$("#searchButton").attr("href", "../display.html");
-    }
-  });
-});
+// $(function() {
+//   $("#searchButton").click(function(e) {
+//     // e.preventDefault();
+//     if(checkInputAtSearchBox($( "#searchBox" ).val())){
+//     	$("#searchButton").attr("href", "../display.html");
+//     }
+//   });
+// });
 
 function checkInputAtSearchBox(courseName){
 	const dept = courseName.slice(0,3);
@@ -57,6 +57,6 @@ function navBarIsLogin(login, username){
 	}
 }
 
-var login = true;
-navBarIsLogin(login, "user");
+// var login = true;
+// navBarIsLogin(login, "user");
 // because we cannot identify the user identity, we choose to display username like this

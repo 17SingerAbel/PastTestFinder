@@ -187,5 +187,4 @@ router.post("/course", function (req, res) {
     })
 });
 
-
 module.exports = router;

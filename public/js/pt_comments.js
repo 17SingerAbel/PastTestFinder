@@ -1,5 +1,8 @@
 'use strict'
 
+const log = console.log;
+
+
 //
 // If absolute URL from the remote server is provided, configure the CORS
 // header on that server.
@@ -9,7 +12,7 @@ var currentPageNum = 1;
 var totalNumberOfPages = 0;
 var scale = 1;
 
-//
+
 // The workerSrc property shall be specified.
 //
 pdfjsLib.GlobalWorkerOptions.workerSrc =
@@ -19,7 +22,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 // Asynchronous download PDF
 //
 pdfjsLib.getDocument(url).then(getPdfPastTest);
-
+// pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
 
 function getPdfPastTest(pdf) {
     totalNumberOfPages = pdf.numPages;
@@ -84,35 +87,35 @@ downloadButton.href = url;
 // Delete comments
 //
 
-const commentsDiv = document.querySelector('#comments');
-commentsDiv.addEventListener('click', removeComment);
-function removeComment(e) {
-	if (e.target.classList.contains('delete-comment')) {
-		const commentToRemove = e.target.parentElement.parentElement.parentElement
-		commentsDiv.removeChild(commentToRemove)
-	}
-}
+// const commentsDiv = document.querySelector('#comments');
+// commentsDiv.addEventListener('click', removeComment);
+// function removeComment(e) {
+// 	if (e.target.classList.contains('delete-comment')) {
+// 		const commentToRemove = e.target.parentElement.parentElement.parentElement
+// 		commentsDiv.removeChild(commentToRemove)
+// 	}
+// }
 
-const submitBtn = document.querySelector('#comment-submit-btn');
-submitBtn.addEventListener('click', (e) => {
-    const newComment = document.querySelector('#new-comment');
-    const content = newComment.value;
-    if (content.trim().length == 0) {
-        alert("Invalid comment!");
-    } else {
-        $('.collapse').collapse('hide');
-        newComment.value = '';
-        const newCard = document.createElement('div');
-        newCard.className = "card-body";
-        newCard.innerHTML = `
-        <blockquote class="blockquote mb-0">
-            <p>${content}</p>
-            <footer class="blockquote-footer">
-                Someone famous in <cite title="Source Title">Source Title</cite>
-                <button class="delete-comment btn btn-danger">Delete</button>
-            </footer>
-        </blockquote>
-        `;
-        commentsDiv.appendChild(newCard);
-    }
-});
+// const submitBtn = document.querySelector('#comment-submit-btn');
+// submitBtn.addEventListener('click', (e) => {
+//     const newComment = document.querySelector('#new-comment');
+//     const content = newComment.value;
+//     if (content.trim().length == 0) {
+//         alert("Invalid comment!");
+//     } else {
+//         $('.collapse').collapse('hide');
+//         newComment.value = '';
+//         const newCard = document.createElement('div');
+//         newCard.className = "card-body";
+//         newCard.innerHTML = `
+//         <blockquote class="blockquote mb-0">
+//             <p>${content}</p>
+//             <footer class="blockquote-footer">
+//                 Someone famous in <cite title="Source Title">Source Title</cite>
+//                 <button class="delete-comment btn btn-danger">Delete</button>
+//             </footer>
+//         </blockquote>
+//         `;
+//         commentsDiv.appendChild(newCard);
+//     }
+// });

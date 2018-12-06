@@ -169,8 +169,6 @@ app.use('/admin', secondary_admin_routes);
 app.use('/user/display', display_routes);
 app.use('/admin/display', admin_display_routes);
 
-
-
 // Password
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());

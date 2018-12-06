@@ -89,8 +89,6 @@ router.post('/profile', changeIMG.single('file'), function(req,res){
         res.redirect("/user/modifyProfile");
     }
 
-	
-
 });
 
 router.post('/modifyProfile', function(req, res){
@@ -120,9 +118,7 @@ router.post('/modifyProfile', function(req, res){
         })
     }
 
-   
-  
-   
+
   //  req.flash('success_msg', 'Edit profile successfuly.');
       if (InputPass != "") {
         req.checkBody('ComfirmPass', 'Passwords do not match').equals(req.body.InputPass);

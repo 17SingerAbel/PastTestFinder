@@ -54,7 +54,7 @@ router.get("/logout", function (req, res) {
 
 router.post('/login', passport.authenticate("local",
     {
-        successRedirect:"/user",
+        successRedirect:"/",
         failureRedirect:"/login",
         failureFlash: true,
     }),
@@ -133,6 +133,8 @@ router.post('/register', function (req, res) {
                     req.flash('success_msg', 'You are successfully registered.');
                     res.redirect("/login");
                 });
+            }
+        });
         const username = req.body.username;
         const input_code = req.body.code;
         Verification.find({

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user');
+const { User } = require('../models/user');
 var multer = require('multer');
 var fs = require('fs');
 const log = console.log
@@ -55,7 +55,6 @@ router.post('/profile', changeIMG.single('file'), function(req,res){
    // log(req.file)
     if (req.file){
         console.log('Change Pic')
-
 
         User.findByUsername(req.user.username).then(function(theUser){
              console.log('Before: ' + theUser.img_path)

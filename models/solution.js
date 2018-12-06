@@ -27,7 +27,9 @@ const SolutionSchema = new Schema({
     // 	type: String 
     // }
     file: 
-      { data: Buffer, name: String, contentType: String }
+      { data: Buffer, name: String, contentType: String },
+
+    comments: [CommentsSchema]
 });
 
 

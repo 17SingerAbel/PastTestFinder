@@ -60,6 +60,7 @@ app.use(expressValidator({
     }
 }));
 
+
 // Global variables
 
 app.use(function (req, res, next) {
@@ -77,7 +78,6 @@ app.use(function (req, res, next) {
     if (url === '/') {
         res.locals.need_nav_search = false;
     }
-     
     next();
 });
 

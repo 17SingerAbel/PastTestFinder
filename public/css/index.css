@@ -1,3 +1,11 @@
 #searchBox{
 	margin-top: 15%;
 }
+.container{
+	 opacity: 0.95;
+	  
+}
+
+.boarderRad{
+	border-radius: 1rem;
+}

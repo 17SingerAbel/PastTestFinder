@@ -44,21 +44,19 @@ router.get('/modifyProfile', function(req, res){
     res.render('modifyProfile',{
     	title: 'modify User Profile',
     	css: ['userProfile.css'],
-    	//js: ['navbarNeedLogin.js'],
+    	
     });
     log("Modify")
  
 });
 
 router.post('/profile', changeIMG.single('file'), function(req,res){
-	//console.log('profile POSt')
-   // log(req.file)
     if (req.file){
         console.log('Change Pic')
 
 
         User.findByUsername(req.user.username).then(function(theUser){
-             console.log('Before: ' + theUser.img_path)
+            // console.log('Before: ' + theUser.img_path)
        
             const file_data = fs.readFileSync(req.file.path);
             theUser.img.data = file_data;
@@ -67,7 +65,7 @@ router.post('/profile', changeIMG.single('file'), function(req,res){
             theUser.img_path = req.file.path
             theUser.save();
 
-             console.log('After req.user.img_path: ' + req.user.img_path)
+             //console.log('After req.user.img_path: ' + req.user.img_path)
         }, (error) => {
             res.status(400).send(error); // 400 for bad request
         })  
@@ -75,11 +73,13 @@ router.post('/profile', changeIMG.single('file'), function(req,res){
         res.redirect("/user/profile");
     }
     else {
-        res.redirect("/user/modifyProfile");
+         req.checkBody('req.file', 'Image is required.').notEmpty();
     }
 
-	
+});
 
+router.put('/profile', function(req,res){
+  res.redirect("/user/modifyProfile");
 });
 
 router.post('/modifyProfile', function(req, res){

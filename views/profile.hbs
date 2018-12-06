@@ -1,5 +1,4 @@
 
-
 <div class="container emp-profile">
     <div class="box-body">
         <div class = "row"> 
@@ -8,16 +7,16 @@
                                 <img class = " profile-img" src = {{img_path}}>
                                  <form class = " text-center" accept="image/x-png,image/gif,image/jpeg" enctype="multipart/form-data" action="/user/profile" method="post" >
                                     <div  class="row offset-md-4">
-                                        <input class = "inputExtraSmall" type="file" name="file">
-                                         <button class="btn btn-outline-secondary buttonExtraSmall" type="submit" name="file"> Change Avatar </button> 
+                                    <input class = "inputExtraSmall" type="file" name="file">
+                                     <button class="btn btn-outline-secondary buttonExtraSmall" type="submit" name="file"> Save Avatar </button> 
                                     </div>
                                           
-                                 </form>                                   
+                                </form>                                   
                             </div>
 
              </div>
             <div class="col-md-8">
-            <form method="get" action="/user/modifyProfile">
+            <form method="put" action="/user/modifyProfile">
                 <div class="row">    
                     <div class="col-md-12">
                         <div class="profile-head">

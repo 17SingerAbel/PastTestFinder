@@ -62,7 +62,6 @@
     <table id='display-table' class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Solutions</th>
           <th scope="col">Username</th>
           <th scope="col">Year</th>
@@ -76,7 +75,6 @@
         <tr></tr>
         {{#each solutions}}
           <tr> 
-            <th scope="row">{{@index}}</th>
             <td><a href='/user/pt-comment/{{_id}}'> {{file.name}} </a></td> 
             <td> {{author}} </td> 
             <td> {{year}}</td>

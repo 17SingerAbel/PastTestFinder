@@ -52,8 +52,7 @@ router.get('/solution-data/:id', function(req,res){
         if (!solution) {
             res.status(404).send()
         } else {
-            // log([solution.file])
-            res.send([solution.file.data]);
+            res.send([solution.file]);
         }
     })
     
@@ -62,7 +61,7 @@ router.get('/solution-data/:id', function(req,res){
 
 
 // todo list:
-// 1. pdf shown in page
+// 1. delete button for admin
 // 2. navbar true, but there are ids
 
 

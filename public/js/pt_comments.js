@@ -1,5 +1,6 @@
 'use strict'
 
+
 const log = console.log;
 
   var currentPageNum = 1;
@@ -15,6 +16,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 const id = window.location.href.split("/")[5];
 
 var pdfData = [];
+var pdfName;
 
 fetch('/user/solution-data/' + id)
 .then((res) => { 
@@ -26,18 +28,21 @@ fetch('/user/solution-data/' + id)
 })
 .then((json) => {
 
-    // pdfjsLib.getDocument({data: json[0].data}).then(getPdfPastTest);
-
-    // alert(json[0].data.length)
-    pdfData = json[0].data;
+    pdfData = json[0].data.data;
+    pdfName = json[0].name;
 
     document.querySelector('#pdf-prev').addEventListener("click", prevPage);
-
     document.querySelector('#pdf-next').addEventListener("click", nextPage);
     document.querySelector('#pdf-bigger').addEventListener("click", zoomIn);
     document.querySelector('#pdf-smaller').addEventListener("click", zoomOut);
-    // const downloadButton = document.querySelector('#pdf-download');
-    // downloadButton.href = url;
+
+    document.querySelector('#pdf-download').addEventListener("click", e => {
+        var byteArray = new Uint8Array(pdfData);
+        var blob = new Blob([byteArray], {type: "application/octet-stream"});
+        var fileName = pdfName;
+        saveAs(blob, fileName);
+    });
+    
 
     pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
 
@@ -51,7 +56,6 @@ function getPdfPastTest(pdf) {
     totalNumberOfPages = pdf.numPages;
     const index = document.querySelector('#page');
     index.innerText = `Page: ${currentPageNum}/${totalNumberOfPages}`
-    // console.log(pdf.getMetadata());
     //
     // Fetch the first page
     //
@@ -101,13 +105,6 @@ const zoomOut = function (e) {
     scale -= 0.1;
     pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
 }
-
-// document.querySelector('#pdf-prev').addEventListener("click", prevPage);
-// document.querySelector('#pdf-next').addEventListener("click", nextPage);
-// document.querySelector('#pdf-bigger').addEventListener("click", zoomIn);
-// document.querySelector('#pdf-smaller').addEventListener("click", zoomOut);
-// const downloadButton = document.querySelector('#pdf-download');
-// downloadButton.href = url;
 
 //
 // Delete comments

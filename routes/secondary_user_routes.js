@@ -5,9 +5,8 @@ const { check } = require('express-validator/check');
 const { User } = require('../models/user');
 const multer = require('multer');
 const fs = require('fs');
-const log = console.log
-const path = require('path');
 const log = console.log;
+const path = require('path');
 
 
 var storage1 = multer.diskStorage({
@@ -28,18 +27,19 @@ router.get('/upload', function (req, res) {
     });
 });
 
-router.post('/upload', upload.single('file'), function(req, res){
+router.post('/upload', upload.single('file'), function(req, res) {
 
     var errors = [];
     var dept, courseNumber, year, term, type, professor;
 
-    if(!req.isAuthenticated()){
-        const login_error =  { 
+    if (!req.isAuthenticated()) {
+        const login_error = {
             msg: 'Please login before uploading your file.',
-            value: '' };
+            value: ''
+        };
         errors.push(login_error);
 
-    } else{
+    } else {
         dept = req.body.dept;
         courseNumber = req.body.courseNumber;
         year = req.body.year == "Select" ? "" : req.body.year;
@@ -52,29 +52,31 @@ router.post('/upload', upload.single('file'), function(req, res){
 
         // Validate fieldss
         req.checkBody('dept', 'Department code is required.').not().equals("Select");
-        req.checkBody('courseNumber', 'Course number is between 100-499.').isInt({ min: 100, max: 499 });
+        req.checkBody('courseNumber', 'Course number is between 100-499.').isInt({min: 100, max: 499});
         req.checkBody('year', 'Year is required.').not().equals("Select");
         req.checkBody('term', 'Term is required.').not().equals("Select");
         req.checkBody('type', 'Type is required.').not().equals("Select");
         req.checkBody('professor', 'Professor is required').notEmpty();
-        
+
         errors = req.validationErrors();
 
-        if(!req.file){
-            const new_error =  {
+        if (!req.file) {
+            const new_error = {
                 param: 'file',
                 msg: 'Please upload the PDF file.',
-                value: '' };
+                value: ''
+            };
             errors.unshift(new_error);
 
-        } else{
+        } else {
             const extension = (path.extname(req.file.originalname)).toLowerCase();
-            if(extension !== '.pdf'){
-                const extention_error =  { 
+            if (extension !== '.pdf') {
+                const extention_error = {
                     // location: 'file',
                     param: 'file',
                     msg: "PDF file is required. Must end with '.pdf'!",
-                    value: '' };
+                    value: ''
+                };
                 errors.unshift(extention_error);
             }
         }
@@ -87,38 +89,38 @@ router.post('/upload', upload.single('file'), function(req, res){
             js: ['upload.js', 'navbarNeedLogin.js'],
             errors: errors,
         });
-    }
-    else {
+    } else {
 
         const file_data = fs.readFileSync('mongo-data/' + req.file.filename);
         const file_name = req.file.originalname;
 
-    	const solution = new Solution({
-    		// fileId: file,
-    		dept: dept,
-    		courseNumber: courseNumber,
-    		year: year,
-    		term: term,
+        const solution = new Solution({
+            // fileId: file,
+            dept: dept,
+            courseNumber: courseNumber,
+            year: year,
+            term: term,
             author: req.user.username,
             professor: professor,
             type: type
-    	});
+        });
 
         solution.file.data = file_data;
         solution.file.name = file_name;
         solution.file.contentType = 'pdf';
 
-    	// log(solution);
+        // log(solution);
 
-    	solution.save().then((result) => {
-			// Save and send object that was saved
-			req.flash('success_msg', 'You have successfully uploaded the file.');
-			// res.send(result);
-			res.redirect('/user/upload');
-		}, (error) => {
-			res.status(400).send(error); // 400 for bad request
-		})
+        solution.save().then((result) => {
+            // Save and send object that was saved
+            req.flash('success_msg', 'You have successfully uploaded the file.');
+            // res.send(result);
+            res.redirect('/user/upload');
+        }, (error) => {
+            res.status(400).send(error); // 400 for bad request
+        })
     }
+});
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -224,7 +226,8 @@ router.post('/modifyProfile', function(req, res){
     if (newyear != "") { 
         req.user.year = newyear;
       //   log("New year = " + req.user.year)
-        User.findOneAndUpdate( {"username": req.user.username } ,
+        User.findOneAndUpdate(
+            {"username": req.user.username } ,
          {$set: {year: newyear}}).catch((error) => {
         res.status(400).send(error)
         })
@@ -261,7 +264,5 @@ router.post('/modifyProfile', function(req, res){
     }
 
 });
-
-
 
 module.exports = router;

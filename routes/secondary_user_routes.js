@@ -34,7 +34,7 @@ router.get('/upload', function (req, res) {
 router.post('/upload', upload.single('file'), function(req, res){
 
     var errors = [];
-    var dept, courseNumber, year, term;
+    var dept, courseNumber, year, term, type, professor;
 
     if(!req.isAuthenticated()){
         const login_error =  { 
@@ -47,7 +47,8 @@ router.post('/upload', upload.single('file'), function(req, res){
         courseNumber = req.body.courseNumber;
         year = req.body.year == "Select" ? "" : req.body.year;
         term = req.body.term == "Select" ? "" : req.body.term;
-
+        type = req.body.type == "Select" ? "" : req.body.type;
+        professor = req.body.professor;
         // const uploadTime = new Date();
 
         // log(req.file);
@@ -97,7 +98,9 @@ router.post('/upload', upload.single('file'), function(req, res){
     		courseNumber: courseNumber,
     		year: year,
     		term: term,
-            author: req.user.username
+            author: req.user.username,
+            professor: professor,
+            type: type
     	});
 
         solution.file.data = file_data;

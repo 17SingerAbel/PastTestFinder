@@ -12,7 +12,10 @@ const UserSchema = new Schema({
     /********************************/
     faculty: String,
     year:  String,
+    img: { data: Buffer, contentType: String },
+    img_path: String,
     status:{
+        //not used 
     	type:String
     }
 });

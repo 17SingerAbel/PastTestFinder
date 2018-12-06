@@ -1,19 +1,26 @@
 
 
 <div class="container emp-profile">
-    <form method="get" action="/user/modifyProfile">
-            <div class="box-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                            <img src='reading.png' alt=""/>
-                            <div class="file btn btn-sm btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
+    <div class="box-body">
+        <div class = "row"> 
+            <div class="col-md-4">
+                            <div class="profile-img">   
+                                <img class = " profile-img" src = {{img_path}}>
+                                 <form accept="image/x-png,image/gif,image/jpeg" enctype="multipart/form-data" action="/user/profile" method="post" >
+                                    <div  class="row">
+                                        <input class = "inputExtraSmall" type="file" name="file">
+                                    </div>
+                                    <div class="row">
+                                         <button class="btn btn-outline-secondary buttonExtraSmall" type="submit" name="file"> save change </button> 
+                                    </div>         
+                                 </form>                                   
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
+
+             </div>
+            <div class="col-md-8">
+            <form method="get" action="/user/modifyProfile">
+                <div class="row">    
+                    <div class="col-md-12">
                         <div class="profile-head">
                             <br>
                                     <h5 id = "userNn">
@@ -31,19 +38,19 @@
                     
                 </div>
                 <div class="row">       
-                    <div class="offset-md-4 col-md-8">
+                    <div class="col-md-12">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <label>Faculty: </label>
                                             </div>
-                                            <div class="col-md-6" >
-                                                <p id="FacultyName">{{faculty}}</p>
+                                            <div class="col-md-12" >
+                                                <p id="FacultyName">{{{faculty}}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <label>Yeara of Study:</label>
                                             </div>
                                             <div class="col-md-6" >
@@ -60,11 +67,13 @@
                     <button type="submit" class="btn btn-primary btn-sm">Edit Profile</button>
                </div>
                                                      
-            </div>   
-            </form>    
-            <br>
-            
-            <div class="offset-md-4">
-             <button type="button" class="btn btn-primary btn-sm" id = "ChangePa">Change Password</button>    
+              
+                </form> 
              </div>
-        </div>
+       </div>
+
+      
+    </div>
+</div>
+    
+

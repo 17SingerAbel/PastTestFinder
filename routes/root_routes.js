@@ -5,6 +5,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const passportLocalMongoose = require('passport-local-mongoose');
 const User = require('../models/user');
 
+var initImg = 'https://image.flaticon.com/icons/png/512/552/552848.png'
+
 // Index page
 router.get('/', function (req, res) {
     res.render('index', {
@@ -38,7 +40,7 @@ router.get("/logout", function (req, res) {
 
 router.post('/login', passport.authenticate("local",
     {
-        successRedirect:"/",
+        successRedirect:"/user",
         failureRedirect:"/login",
         failureFlash: true,
     }),
@@ -68,7 +70,9 @@ router.post('/register', function (req, res) {
         });
     }
     else {
-        User.register(new User({username:req.body.username}), req.body.password, function (err, user) {
+        User.register(new User({username:req.body.username, status: "user", faculty: "Unknown", 
+            year: "Unknown", img_path:initImg} ), 
+            req.body.password, function (err, user) {
             if (err) {
                 res.render('register', {
                     title: 'Register',

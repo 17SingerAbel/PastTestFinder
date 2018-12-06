@@ -72,6 +72,7 @@ app.use(function (req, res, next) {
     /************************/
     res.locals.faculty = req.user ? req.user.faculty : null;
     res.locals.year = req.user ? req.user.year : null;
+    res.locals.img_path = req.user ? req.user.img_path : null;
     
     /*************************/
 

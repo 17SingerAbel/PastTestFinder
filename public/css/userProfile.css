@@ -97,3 +97,14 @@
     font-weight: 600;
     color: #0062cc;
 }
+
+.buttonExtraSmall {
+    font-size: 10px;
+     padding: 5px;
+     max-width: 70px;
+}
+.inputExtraSmall {
+    font-size: 10px;
+     padding: 5px;
+     max-width: 100px;
+}

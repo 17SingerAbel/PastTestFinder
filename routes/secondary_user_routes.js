@@ -53,10 +53,14 @@ router.post('/upload', upload.single('file'), function(req, res){
 
         // log(req.file);
 
-        // Validate fields
+        // Validate fieldss
         req.checkBody('dept', 'Department code is required.').not().equals("Select");
         req.checkBody('courseNumber', 'Course number is between 100-499.').isInt({ min: 100, max: 499 });
-
+        req.checkBody('year', 'Year is required.').not().equals("Select");
+        req.checkBody('term', 'Term is required.').not().equals("Select");
+        req.checkBody('type', 'Type is required.').not().equals("Select");
+        req.checkBody('professor', 'Professor is required').notEmpty();
+        
         errors = req.validationErrors();
 
         if(!req.file){

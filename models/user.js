@@ -8,6 +8,15 @@ const UserSchema = new Schema({
     },
     password: {
         type: String
+    },
+    /********************************/
+    faculty: String,
+    year:  String,
+    img: { data: Buffer, contentType: String },
+    img_path: String,
+    status:{
+        //not used 
+    	type:String
     }
 });
 

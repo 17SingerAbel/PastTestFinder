@@ -6,13 +6,12 @@
             <div class="col-md-4">
                             <div class="profile-img">   
                                 <img class = " profile-img" src = {{img_path}}>
-                                 <form accept="image/x-png,image/gif,image/jpeg" enctype="multipart/form-data" action="/user/profile" method="post" >
-                                    <div  class="row">
+                                 <form class = " text-center" accept="image/x-png,image/gif,image/jpeg" enctype="multipart/form-data" action="/user/profile" method="post" >
+                                    <div  class="row offset-md-4">
                                         <input class = "inputExtraSmall" type="file" name="file">
+                                         <button class="btn btn-outline-secondary buttonExtraSmall" type="submit" name="file"> Change Avatar </button> 
                                     </div>
-                                    <div class="row">
-                                         <button class="btn btn-outline-secondary buttonExtraSmall" type="submit" name="file"> save change </button> 
-                                    </div>         
+                                          
                                  </form>                                   
                             </div>
 
@@ -42,18 +41,18 @@
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-4">
                                                 <label>Faculty: </label>
                                             </div>
-                                            <div class="col-md-12" >
-                                                <p id="FacultyName">{{{faculty}}}</p>
+                                            <div class="col-md-8" >
+                                                <p id="FacultyName">{{faculty}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-4">
                                                 <label>Yeara of Study:</label>
                                             </div>
-                                            <div class="col-md-6" >
+                                            <div class="col-md-8" >
                                                 <p id ="yearStudy">{{{year}}}</p>
                                             </div>
                                         </div>
@@ -63,7 +62,7 @@
                     </div>
                 </div>
 
-                <div class="offset-md-4">       
+                <div >       
                     <button type="submit" class="btn btn-primary btn-sm">Edit Profile</button>
                </div>
                                                      

@@ -72,10 +72,10 @@ app.use(function (req, res, next) {
     res.locals.year = req.user ? req.user.year : null;
     res.locals.img_path = req.user ? req.user.img_path : null;
   
-    res.locals.need_nav_search = false;
+    res.locals.need_nav_search = true;
     const url = req.originalUrl;
-    if (url === '/login' || url === '/register') {
-        res.locals.need_nav_search = true;
+    if (url === '/') {
+        res.locals.need_nav_search = false;
     }
      
     next();
@@ -86,8 +86,9 @@ const root_routes = require('./routes/root_routes');
 const secondary_user_routes = require('./routes/secondary_user_routes');
 const secondary_admin_routes = require('./routes/secondary_admin_routes');
 
-const display_routes = require('./routes/display_routes')
-const admin_display_routes = require('./routes/admin_display_routes')
+const display_routes = require('./routes/display_routes');
+const admin_display_routes = require('./routes/admin_display_routes');
+
 /* Our routes:
     /
     /login

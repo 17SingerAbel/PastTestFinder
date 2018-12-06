@@ -28,8 +28,10 @@ const SolutionSchema = new Schema({
     // fileId :{
     //     type: String
     // }
-    file:
-        {data: Buffer, name: String, contentType: String}
+    file: 
+      { data: Buffer, name: String, contentType: String },
+
+    comments: [CommentsSchema]
 });
 
 // UserSchema.plugin(passportLocalMongoose);

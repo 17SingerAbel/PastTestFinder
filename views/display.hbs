@@ -33,9 +33,9 @@
         <form action="/user/display/{{courseCode}}" method="GET" class="selectForm"></form>
         <label for="deptSelector" class="col-sm-3"></label>
         <select class="form-control col-sm-9" id="deptSelectorType">
-          <option>Type</option>
-          <option>Midterm</option>
-          <option>Final</option>
+          {{#each typeColumn}}
+            <option>{{this}}</option>
+          {{/each}}
         </select>
         </form>
       </div>

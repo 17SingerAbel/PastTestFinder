@@ -7,7 +7,7 @@ http://ec2-35-183-8-133.ca-central-1.compute.amazonaws.com
 
 http://pefinder.tk
 
-## File Structure
+## File Structure (legacy)
 ```bash
 \.
 ├── README.md

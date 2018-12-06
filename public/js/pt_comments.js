@@ -2,27 +2,73 @@
 
 const log = console.log;
 
+const id = window.location.href.split("/")[5];
 
-//
-// If absolute URL from the remote server is provided, configure the CORS
-// header on that server.
-//
+var pdfData = [];
+
+fetch('/user/solution-data/' + id)
+.then((res) => { 
+    if (res.status === 200) {
+       return res.json();
+   } else {
+        alert('Could not get solution data');
+   }                
+})
+.then((json) => {
+  // alert(json[0].data.length)
+
+  // const base64str = new Buffer(json[0].data).toString('base64');
+  // alert(base64str.length)
+  
+
+  const base64 = (json[0].data).toString('base64');
+  // alert(base64[0])
+
+  const base64str = new Buffer(base64, 'base64');
+  // const base64str = Buffer.from("SGVsbG8gV29ybGQ=", 'base64');
+  alert(base64str.length)
+
+  pdfData = atob(base64str);
+  alert(pdfData.length)
+
+
+}).catch((error) => {
+    console.log(error)
+})
+
+
 var url = 'https://jellycsc.github.io/mdres/pdfs/sample_pt.pdf';
 var currentPageNum = 1;
 var totalNumberOfPages = 0;
 var scale = 1;
 
 
+// pdfData = atob(
+//   'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwog' +
+//   'IC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAv' +
+//   'TWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0K' +
+//   'Pj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAg' +
+//   'L1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+' +
+//   'PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9u' +
+//   'dAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2Jq' +
+//   'Cgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJU' +
+//   'CjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVu' +
+//   'ZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4g' +
+//   'CjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAw' +
+//   'MDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9v' +
+//   'dCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G');
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
 // The workerSrc property shall be specified.
-//
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.worker.js';
 
 //
 // Asynchronous download PDF
 //
-pdfjsLib.getDocument(url).then(getPdfPastTest);
-// pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
+// pdfjsLib.getDocument(url).then(getPdfPastTest);
+pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
 
 function getPdfPastTest(pdf) {
     totalNumberOfPages = pdf.numPages;

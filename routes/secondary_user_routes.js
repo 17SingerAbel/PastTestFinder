@@ -40,9 +40,30 @@ router.get('/pt-comments/:id', function(req,res){
 	
 })
 
+router.get('/solution-data/:id', function(req,res){
+    // ObjectId("5c04c0221c5efe3b585affc5")
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        return res.status(404).send()
+    }
+
+    Solution.findById(id).then((solution) =>{
+        if (!solution) {
+            res.status(404).send()
+        } else {
+            // log([solution.file])
+            res.send([solution.file.data]);
+        }
+    })
+    
+})
+
+
+
 // todo list:
-// 1. comment schema should be included in solution schema
-// 2. find by id
+// 1. pdf shown in page
+// 2. navbar true, but there are ids
 
 
 router.post('/pt-comments/:id', function(req,res){

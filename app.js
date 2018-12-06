@@ -17,9 +17,8 @@ const passportLocalMongoose = require('passport-local-mongoose');
 
 // Require custom modules
 const { mongoose } = require('./db/mongoose');
+const Solution = require('./models/solution');
 const { User } = require('./models/user');
-
-//const User_claire = require('./models/user_claire');
 // Express APP
 const app = express();
 
@@ -87,6 +86,8 @@ const root_routes = require('./routes/root_routes');
 const secondary_user_routes = require('./routes/secondary_user_routes');
 const secondary_admin_routes = require('./routes/secondary_admin_routes');
 
+const display_routes = require('./routes/display_routes')
+const admin_display_routes = require('./routes/admin_display_routes')
 /* Our routes:
     /
     /login
@@ -95,9 +96,79 @@ const secondary_admin_routes = require('./routes/secondary_admin_routes');
     /user/...
     /admin/...
 */
+
+// hard code some solution data
+app.post('/user/display', (req, res)=> {
+    const s1 = new Solution({
+        dept: 'CSC',
+        courseNumber: 309,
+        year: 2016,
+        term: 'Fall',
+        type: 'Midterm',
+        professor: 'Ken Jackson',
+        author: 'jellycsc',
+        fileId: 'Solution1.pdf'
+    })
+    s1.save()
+
+    const s2 = new Solution({
+        dept: 'CSC',
+        courseNumber: 309,
+        year: 2017,
+        term: 'Fall',
+        type: 'Final',
+        professor: 'Ken Jackson',
+        author: 'Cosmos',
+        fileId: 'Solution2.pdf'
+    })
+    s2.save()
+
+    const s3 = new Solution({
+        dept: 'CSC',
+        courseNumber: 309,
+        year: 2017,
+        term: 'Winter',
+        type: 'Midterm',
+        professor: 'David Liu',
+        author: 'Claire',
+        fileId: 'Solution3.pdf'
+    })
+    s3.save()
+
+    const s4 = new Solution({
+        dept: 'CSC',
+        courseNumber: 309,
+        year: 2016,
+        term: 'Winter',
+        type: 'Midterm',
+        professor: 'Ken Jackson',
+        author: '17Singer',
+        fileId: 'Solution4.pdf'
+    })
+    s4.save()
+
+
+    const s5 = new Solution({
+        dept: 'CSC',
+        courseNumber: 411,
+        year: 2018,
+        term: 'Winter',
+        type: 'Midterm',
+        professor: 'Geffory Hinton',
+        author: 'Rogers',
+        fileId: 'Solution5.pdf'
+    })
+    s5.save()
+})
+
+
 app.use('/', root_routes);
 app.use('/user', secondary_user_routes);
 app.use('/admin', secondary_admin_routes);
+app.use('/user/display', display_routes);
+app.use('/admin/display', admin_display_routes);
+
+
 
 // Password
 passport.use(new LocalStrategy(User.authenticate()));

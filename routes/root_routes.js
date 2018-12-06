@@ -38,7 +38,7 @@ router.get('/login', isLoggedIn, function (req, res) {
     });
 });
 
-router.get('/register', function (req, res) {
+router.get('/register', isLoggedIn, function (req, res) {
     res.render('register', {
         title: 'Register',
         css: ['registerAndLogin.css'],

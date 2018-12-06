@@ -31,6 +31,7 @@ router.get('/:courseCode', function(req, res){
 				if (yearColumn.indexOf(soln.year) === -1) yearColumn.push(soln.year)
 				if (termColumn.indexOf(soln.term) === -1) termColumn.push(soln.term)
 				if (professorColumn.indexOf(soln.professor) === -1) professorColumn.push(soln.professor)
+				soln.author = soln.author.split("@")[0]
 			})
 			// console.log(yearColumn)
 			// console.log(termColumn)
@@ -89,6 +90,10 @@ router.get('/:courseCode/:year?/:term:?/:type?/:prof?', function(req, res) {
 					console.log(yearColumn)
 					console.log(termColumn)
 					console.log(professorColumn)
+			})
+
+			solutions.map(solution => {
+				solution.author = solution.author.split("@")[0]
 			})
 			res.render('admin_display', {
 	        title: 'Admin Display',

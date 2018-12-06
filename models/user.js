@@ -20,6 +20,18 @@ const UserSchema = new Schema({
     }
 });
 
+const verificationSchema = new Schema({
+    email: {
+        type: String
+    },
+    verificationCode:{
+        type: String
+    }
+});
+
 UserSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = {
+    User: mongoose.model("User", UserSchema),
+    Verification: mongoose.model("Verification", verificationSchema),
+};

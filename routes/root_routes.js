@@ -118,23 +118,6 @@ router.post('/register', function (req, res) {
         });
     }
     else {
-        User.register(new User({username:req.body.username, status: "user", faculty: "Unknown", 
-            year: "Unknown", img_path:initImg} ), 
-            req.body.password, function (err, user) {
-            if (err) {
-                res.render('register', {
-                    title: 'Register',
-                    css: ['registerAndLogin.css'],
-                    js: ['login.js', 'navbarNeedLogin.js'],
-                    errors: err,
-                });
-            } else {
-                passport.authenticate("local")(req, res, function () {
-                    req.flash('success_msg', 'You are successfully registered.');
-                    res.redirect("/login");
-                });
-            }
-        });
         const username = req.body.username;
         const input_code = req.body.code;
         Verification.find({
@@ -147,7 +130,8 @@ router.post('/register', function (req, res) {
             }
             return Promise.reject();
         }).then((true_code) => {
-            User.register(new User({username:req.body.username, }), req.body.password, function (err, user) {
+            User.register(new User({username:req.body.username, status: "user", faculty: "Unknown",
+                year: "Unknown", img_path:initImg} ), req.body.password, function (err, user) {
                 if (err) {
                     res.render('register', {
                         title: 'Register',

@@ -4,12 +4,14 @@ const { User } = require('../models/user');
 var multer = require('multer');
 var fs = require('fs');
 const log = console.log
+const path = require('path');
 
 
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, __dirname + '/imgs/')      //you tell where to upload the files,
+      console.log(__dirname);
+    cb(null, __dirname + '/../public/imgs/')      //you tell where to upload the files,
   },
   filename: function (req, file, cb) {
     cb(null,  file.fieldname + '-' + Date.now() + '.png')
@@ -33,7 +35,8 @@ router.get('/profile', function(req, res){
     res.render('profile',{
     	title: 'User Profile',
     	css: ['userProfile.css'],
-    	js: ['userProfile.js'],
+    	js: [],
+        img: req.user.img_path
     });
 
     log('GET profile')
@@ -63,15 +66,24 @@ router.post('/profile', changeIMG.single('file'), function(req,res){
             theUser.img.data = file_data;
             theUser.img.contentType = 'image/png';
 
-            theUser.img_path = req.file.path
+            // console.log(path.basename(req.file.path));
+            theUser.img_path = '/imgs/' + path.basename(req.file.path)
             theUser.save();
 
-             console.log('After req.user.img_path: ' + req.user.img_path)
+            console.log(theUser);
+
+            console.log('After req.user.img_path: ' + req.user.img_path)
+            return theUser.img_path;
         }, (error) => {
             res.status(400).send(error); // 400 for bad request
-        })  
-
-        res.redirect("/user/profile");
+        }).then((pth) => {
+            res.render('profile',{
+                title: 'User Profile',
+                css: ['userProfile.css'],
+                js: [],
+                img: pth
+            });
+        })
     }
     else {
         res.redirect("/user/modifyProfile");

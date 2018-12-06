@@ -1,7 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // const passportLocalMongoose = require("passport-local-mongoose");
-
+const CommentsSchema = new Schema({
+    username: {
+        type: String
+    },
+    context:{
+        type: String
+    }
+    // time: {
+    //     type: Number
+    // }
+});
 const SolutionSchema = new Schema({
     
     dept: {

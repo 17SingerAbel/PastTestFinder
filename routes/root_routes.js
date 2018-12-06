@@ -4,6 +4,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const passportLocalMongoose = require('passport-local-mongoose');
 const { User, Verification } = require('../models/user');
+const { Course } = require('../models/course');
 const randomstring = require("randomstring");
 const nodemailer = require('nodemailer');
 const aws = require('aws-sdk');
@@ -162,5 +163,26 @@ function isLoggedIn (req, res, next) {
     }
     res.redirect("/");
 }
+
+// JSON API
+// {
+//     "dept": "CSC",
+//     "courseNumber": 309
+// }
+router.post("/course", function (req, res) {
+    Course.find({
+        dept: req.body.dept,
+        courseNumber: req.body.courseNumber
+    }).then((course) => {
+        if (course.length == 0) {
+            res.status(404).send()
+        } else {
+            res.status(200).send()
+        }
+    }, (error) => {
+        res.status(400).send()
+    })
+});
+
 
 module.exports = router;

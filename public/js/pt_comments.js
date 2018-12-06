@@ -25,36 +25,21 @@ fetch('/user/solution-data/' + id)
    }                
 })
 .then((json) => {
-  // alert(json[0].data.length)
 
-  // const base64str = new Buffer(json[0].data).toString('base64');
-  // // alert(base64str.length)
-  
+    // pdfjsLib.getDocument({data: json[0].data}).then(getPdfPastTest);
 
-  const base64 = (json[0].data).toString('base64');
-  // alert(base64.length)
+    // alert(json[0].data.length)
+    pdfData = json[0].data;
 
-  // const base64str = new Buffer(base64, 'base64');
+    document.querySelector('#pdf-prev').addEventListener("click", prevPage);
 
+    document.querySelector('#pdf-next').addEventListener("click", nextPage);
+    document.querySelector('#pdf-bigger').addEventListener("click", zoomIn);
+    document.querySelector('#pdf-smaller').addEventListener("click", zoomOut);
+    // const downloadButton = document.querySelector('#pdf-download');
+    // downloadButton.href = url;
 
-  const base64str = 'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwog' +
-  'IC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAv' +
-  'TWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0K' +
-  'Pj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAg' +
-  'L1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+' +
-  'PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9u' +
-  'dAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2Jq' +
-  'Cgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJU' +
-  'CjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVu' +
-  'ZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4g' +
-  'CjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAw' +
-  'MDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9v' +
-  'dCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G';
-
-
-pdfData = atob(base64str);
-pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
-
+    pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
 
 }).catch((error) => {
     console.log(error)
@@ -93,33 +78,36 @@ function getPdfPastTest(pdf) {
     });
 }
 
+
 const prevPage = function (e) {
+
   if (currentPageNum > 1) {
     currentPageNum -= 1;
-    pdfjsLib.getDocument(url).then(getPdfPastTest);
+    pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
   }
 }
 const nextPage = function (e) {
+  log(currentPageNum)
   if (currentPageNum < totalNumberOfPages) {
     currentPageNum += 1;
-    pdfjsLib.getDocument(url).then(getPdfPastTest);
+    pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
   }
 }
 const zoomIn = function (e) {
   scale += 0.1;
-  pdfjsLib.getDocument(url).then(getPdfPastTest);
+  pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
 }
 const zoomOut = function (e) {
     scale -= 0.1;
-    pdfjsLib.getDocument(url).then(getPdfPastTest);
+    pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
 }
 
-document.querySelector('#pdf-prev').addEventListener("click", prevPage);
-document.querySelector('#pdf-next').addEventListener("click", nextPage);
-document.querySelector('#pdf-bigger').addEventListener("click", zoomIn);
-document.querySelector('#pdf-smaller').addEventListener("click", zoomOut);
-const downloadButton = document.querySelector('#pdf-download');
-downloadButton.href = url;
+// document.querySelector('#pdf-prev').addEventListener("click", prevPage);
+// document.querySelector('#pdf-next').addEventListener("click", nextPage);
+// document.querySelector('#pdf-bigger').addEventListener("click", zoomIn);
+// document.querySelector('#pdf-smaller').addEventListener("click", zoomOut);
+// const downloadButton = document.querySelector('#pdf-download');
+// downloadButton.href = url;
 
 //
 // Delete comments

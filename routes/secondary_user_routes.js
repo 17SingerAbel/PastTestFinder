@@ -98,7 +98,7 @@ router.post('/upload', upload.single('file'), function(req, res){
     		courseNumber: courseNumber,
     		year: year,
     		term: term,
-            author: req.user.username.split("@")[0],
+            author: req.user.username,
             professor: professor,
             type: type
     	});

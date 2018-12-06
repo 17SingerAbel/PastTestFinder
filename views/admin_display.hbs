@@ -19,7 +19,7 @@
       </div>
 
       <div id="selectTermButton" class="form-group filterSize ">
-        <form action="/user/display/{{courseCode}}" method="GET" class="selectForm">
+        <form action="/admin/display/{{courseCode}}" method="GET" class="selectForm">
         <label for="deptSelector" class="col-sm-3"></label>
         <select class="form-control col-sm-9" id="deptSelectorTerm">
           {{#each termColumn}}
@@ -30,7 +30,7 @@
       </div>
  
       <div id="selectTypeButton" class="form-group filterSize ">
-        <form action="/user/display/{{courseCode}}" method="GET" class="selectForm"></form>
+        <form action="/admin/display/{{courseCode}}" method="GET" class="selectForm"></form>
         <label for="deptSelector" class="col-sm-3"></label>
         <select class="form-control col-sm-9" id="deptSelectorType">
           <option>Type</option>
@@ -41,7 +41,7 @@
       </div>
 
       <div id="selectProfessorButton" class="form-group filterSizeProf" >
-        <form action="/user/display/{{courseCode}}" method="GET" class="selectForm"></form>
+        <form action="/admin/display/{{courseCode}}" method="GET" class="selectForm"></form>
         <label for="deptSelector" class="col-sm-3"></label>
         <select class="form-control col-sm-9" id="deptSelectorProf">
           {{#each professorColumn}}
@@ -78,7 +78,7 @@
         {{#each solutions}}
           <tr> 
             <th scope="row">{{@index}}</th>
-            <td><a href='/user/pt-comment/{{_id}}'> {{fileId}} </a></td> 
+            <td><a href='/user/pt-comment/{{_id}}'> {{file.name}} </a></td> 
             <td> {{author}} </td> 
             <td> {{year}}</td>
             <td>{{term}}</td>

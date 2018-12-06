@@ -31,6 +31,7 @@ router.get('/:courseCode', function(req, res){
 				if (yearColumn.indexOf(soln.year) === -1) yearColumn.push(soln.year)
 				if (termColumn.indexOf(soln.term) === -1) termColumn.push(soln.term)
 				if (professorColumn.indexOf(soln.professor) === -1) professorColumn.push(soln.professor)
+				console.log(soln.file.name)
 			})
 			// console.log(yearColumn)
 			// console.log(termColumn)

@@ -148,31 +148,66 @@ var changeIMG = multer({storage: storage});
 // });
 
 
-
-router.get('/profile', function(req, res){
-    res.render('profile',{
-    	title: 'User Profile',
-    	css: ['userProfile.css'],
-    	js: [],
-        img: req.user.img_path
-    });
+router.get('/profile/:linkedUsername', function(req, res){
+    const username = req.user.username.split("@")[0]
+    const linkedUsername = req.params.linkedUsername
+    let sameUser = false
+    // console.log(username)
+    console.log(linkedUsername)
+    if (username == linkedUsername){
+        sameUser = true
+        console.log(req.user)
+        req.user.username = req.user.username.split("@")[0]
+        res.render('profile',{
+            title: 'User Profile',
+            css: ['userProfile.css'],
+            js: [],
+            // img: req.user.img_path,
+            loggedUser: req.user,
+            sameUser: sameUser
+        });
+    } else {
+        sameUser = false
+        
+        User.find({username: new RegExp(linkedUsername, "i")}).then(function(theUser){
+            console.log(theUser)
+            // theUser = theUser[0]
+            theUser[0].username = theUser[0].username.split("@")[0]
+            res.render('profile',{
+                title: 'User Profile',
+                css: ['userProfile.css'],
+                js: [],
+                // img: theUser.img_path,
+                loggedUser: theUser[0],
+                sameUser: sameUser
+            });
+       }, (error) => {
+           res.status(400).send(error); // 400 for bad request
+       })
+        
+    }
 
     log('GET profile')
-
 });
 
-router.get('/modifyProfile', function(req, res){
+router.get('/:linkedUsername/modifyProfile', function(req, res){
+    const linkedUsername = req.params.linkedUsername
+    console.log(linkedUsername)
     res.render('modifyProfile',{
     	title: 'modify User Profile',
-    	css: ['userProfile.css'],
-      js: []
-    	
+        css: ['userProfile.css'],
+        js: [],
+        linkedUsername: linkedUsername,
+        loggedUser: req.user
     });
     log("Modify")
  
 });
 
-router.post('/profile', changeIMG.single('file'), function(req,res){
+
+router.post('/profile/:linkedUsername', changeIMG.single('file'), function(req,res){
+   const linkedUsername = req.params.linkedUsername
+   const sameUser = true
     if (req.file){
         console.log('Change Pic')
 
@@ -194,23 +229,20 @@ router.post('/profile', changeIMG.single('file'), function(req,res){
         }, (error) => {
             res.status(400).send(error); // 400 for bad request
         }).then((pth) => {
+            const result = req.user;
+            result.img_path = pth;
+            result.username = result.username.split("@")[0]
             res.render('profile',{
                 title: 'User Profile',
                 css: ['userProfile.css'],
-                js: [],
-                img: pth
+                linkedUsername: linkedUsername,
+                loggedUser: result,
+                sameUser: sameUser
             });
         })
     }
     else {
-         // req.checkBody('req.file', 'Image is required.').notEmpty();
-        res.render('profile',{
-            title: 'User Profile',
-            css: ['userProfile.css'],
-            js: [],
-            img_err: 'Image is required.',
-            img: req.user.img_path
-        });
+        res.redirect("/user/" + linkedUsername + "/modifyProfile");
     }
 });
 
@@ -218,7 +250,8 @@ router.put('/profile', function(req,res){
   res.redirect("/user/modifyProfile");
 });
 
-router.post('/modifyProfile', function(req, res){
+router.post('/:linkedUsername/modifyProfile', function(req, res){
+    let linkedUsername = req.params.linkedUsername
     log(req.body)
     var newfaculty = req.body.InputFaculty;
     var newyear = req.body.InputYear;
@@ -252,11 +285,14 @@ router.post('/modifyProfile', function(req, res){
         req.checkBody('ComfirmPass', 'Passwords do not match').equals(req.body.InputPass);
          const errors = req.validationErrors();
           if (errors) {
+                req.user.username = req.user.username.split("@")[0]
                 res.render('modifyProfile',{
                     title: 'modify User Profile',
                     css: ['userProfile.css'],
-                     errors: errors,
-                 });
+                    linkedUsername: linkedUsername,
+                    loggedUser: req.user,
+                    errors: errors,
+                });
 
             }
             else {
@@ -266,19 +302,19 @@ router.post('/modifyProfile', function(req, res){
                             theUser.save();
                           //  log("Change Pass!");
                             })
-                        res.redirect('/user/profile');
+                        res.redirect('/user/profile/' + linkedUsername);
                     }
                 });        
                 
             }
     }
     else { 
-        res.redirect('/user/profile');
+        res.redirect('/user/profile/' + linkedUsername);
     }
 
 });
 
-router.get('/pt-comments/:id', function(req,res){
+router.get('/pt-comments/:id', isAdminPT, function(req,res){
     // ObjectId("5c04c0221c5efe3b585affc5")
     const id = req.params.id;
 
@@ -396,7 +432,7 @@ router.post('/pt-comments/:id', function(req,res){
 function isAdminPT (req, res, next) {
     if (req.user) {
         if (req.user.status === 'admin') {
-            return res.redirect("/admin/display" + req.url);
+            return res.redirect("/admin" + req.url);
         } else {
             next();
         }

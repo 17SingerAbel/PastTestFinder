@@ -1,11 +1,11 @@
-$(function() {
-  $("#searchButton").click(function(e) {
-    // e.preventDefault();
-    if(checkInputAtSearchBox($( "#searchBox" ).val())){
-    	$("#searchButton").attr("href", "display.html");
-    }
-  });
-});
+// $(function() {
+//   $("#searchButton").click(function(e) {
+//     // e.preventDefault();
+//     if(checkInputAtSearchBox($( "#searchBox" ).val())){
+//     	$("#searchButton").attr("href", "display.html");
+//     }
+//   });
+// });
 
 function checkInputAtSearchBox(courseName){
 	const dept = courseName.slice(0,3);
@@ -26,18 +26,18 @@ function isLetter(str) {
 }
 
 function isThreeDigits(str) {
-	const num = parseInt(str);
+    const num = parseInt(str);
 
-	if(isNaN(num)){
-		$("#navbarErrorMessage").html("Not a course number");
-		return false;
-	}
-	if(num>=500 || num<100){
-		$("#navbarErrorMessage").html("Should be within 100-499");
-		return false;
-	}
+    if (isNaN(num)) {
+        $("#navbarErrorMessage").html("Not a course number");
+        return false;
+    }
+    if (num >= 500 || num < 100) {
+        $("#navbarErrorMessage").html("Should be within 100-499");
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
 function navBarIsLogin(login, username){
@@ -56,7 +56,3 @@ function navBarIsLogin(login, username){
 		console.log("ready to login");
 	}
 }
-
-var login = false;
-navBarIsLogin(login, "user");
-// because we cannot identify the user identity, we choose to display username like this

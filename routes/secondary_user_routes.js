@@ -32,13 +32,43 @@ var changeIMG = multer({storage: storage});
 
 
 router.get('/profile/:linkedUsername', function(req, res){
-    res.render('profile',{
-    	title: 'User Profile',
-    	css: ['userProfile.css'],
-    	js: [],
-        img: req.user.img_path
-    });
-
+    const username = req.user.username.split("@")[0]
+    const linkedUsername = req.params.linkedUsername
+    let sameUser = false
+    // console.log(username)
+    console.log(linkedUsername)
+    if (username == linkedUsername){
+        sameUser = true
+        console.log(req.user)
+        req.user.username = req.user.username.split("@")[0]
+        res.render('profile',{
+            title: 'User Profile',
+            css: ['userProfile.css'],
+            js: [],
+            // img: req.user.img_path,
+            loggedUser: req.user,
+            sameUser: sameUser
+        });
+    } else {
+        sameUser = false
+        
+        User.find({username: new RegExp(linkedUsername, "i")}).then(function(theUser){
+            console.log(theUser)
+            // theUser = theUser[0]
+            theUser[0].username = theUser[0].username.split("@")[0]
+            res.render('profile',{
+                title: 'User Profile',
+                css: ['userProfile.css'],
+                js: [],
+                // img: theUser.img_path,
+                loggedUser: theUser[0],
+                sameUser: sameUser
+            });
+       }, (error) => {
+           res.status(400).send(error); // 400 for bad request
+       })
+        
+    }
     log('GET profile')
 });
 
@@ -49,6 +79,7 @@ router.get('/:linkedUsername/modifyProfile', function(req, res){
     	title: 'modify User Profile',
         css: ['userProfile.css'],
         linkedUsername: linkedUsername,
+        loggedUser: req.user
     	//js: ['navbarNeedLogin.js'],
     });
     log("Modify")
@@ -59,6 +90,7 @@ router.post('/profile/:linkedUsername', changeIMG.single('file'), function(req,r
 	//console.log('profile POSt')
    // log(req.file)
    const linkedUsername = req.params.linkedUsername
+   const sameUser = true
     if (req.file){
         console.log('Change Pic')
 
@@ -80,12 +112,15 @@ router.post('/profile/:linkedUsername', changeIMG.single('file'), function(req,r
         }, (error) => {
             res.status(400).send(error); // 400 for bad request
         }).then((pth) => {
+            const result = req.user;
+            result.img_path = pth;
+            result.username = result.username.split("@")[0]
             res.render('profile',{
                 title: 'User Profile',
                 css: ['userProfile.css'],
                 linkedUsername: linkedUsername,
-                js: [],
-                img: pth
+                loggedUser: result,
+                sameUser: sameUser
             });
         })
     }

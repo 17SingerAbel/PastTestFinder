@@ -5,14 +5,16 @@
         <div class = "row"> 
             <div class="col-md-4">
                             <div class="profile-img">   
-                                <img class = " profile-img" src = {{img}}>
+                                <img class = " profile-img" src = {{loggedUser.img_path}}>
+                                {{#if sameUser}}
                                  <form class = " text-center" accept="image/x-png,image/gif,image/jpeg" enctype="multipart/form-data" action="/user/profile/{{linkedUsername}}" method="post" >
                                     <div  class="row offset-md-4">
                                         <input class = "inputExtraSmall" type="file" name="file">
                                          <button class="btn btn-outline-secondary buttonExtraSmall" type="submit" name="file"> Change Avatar </button> 
                                     </div>
                                           
-                                 </form>                                   
+                                 </form>  
+                                 {{/if}}                                 
                             </div>
 
              </div>
@@ -23,7 +25,7 @@
                         <div class="profile-head">
                             <br>
                                     <h5 id = "userNn">
-                                        User name : {{{user}}}
+                                        User name : {{loggedUser.username}}
                                     </h5>
                              <br>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -45,7 +47,7 @@
                                                 <label>Faculty: </label>
                                             </div>
                                             <div class="col-md-8" >
-                                                <p id="FacultyName">{{faculty}}</p>
+                                                <p id="FacultyName">{{loggedUser.faculty}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -53,7 +55,7 @@
                                                 <label>Year of Study:</label>
                                             </div>
                                             <div class="col-md-8" >
-                                                <p id ="yearStudy">{{{year}}}</p>
+                                                <p id ="yearStudy">{{loggedUser.year}}</p>
                                             </div>
                                         </div>
                                         
@@ -61,11 +63,11 @@
                         </div>
                     </div>
                 </div>
-
+                {{#if sameUser}}
                 <div >       
                     <button type="submit" class="btn btn-primary btn-sm">Edit Profile</button>
                </div>
-                                                     
+                {{/if}}                                  
               
                 </form> 
              </div>

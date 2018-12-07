@@ -235,6 +235,7 @@ router.post('/profile/:linkedUsername', changeIMG.single('file'), function(req,r
             res.render('profile',{
                 title: 'User Profile',
                 css: ['userProfile.css'],
+                ps: [],
                 linkedUsername: linkedUsername,
                 loggedUser: result,
                 sameUser: sameUser
@@ -242,7 +243,17 @@ router.post('/profile/:linkedUsername', changeIMG.single('file'), function(req,r
         })
     }
     else {
-        res.redirect("/user/" + linkedUsername + "/modifyProfile");
+        const result = req.user;
+        result.username = result.username.split("@")[0]
+        res.render('profile',{
+            title: 'User Profile',
+            css: ['userProfile.css'],
+            ps: [],
+            img_err: 'Image is required.',
+            linkedUsername: linkedUsername,
+            loggedUser: result,
+            sameUser: true
+        });
     }
 });
 
@@ -252,18 +263,13 @@ router.put('/profile', function(req,res){
 
 router.post('/:linkedUsername/modifyProfile', function(req, res){
     let linkedUsername = req.params.linkedUsername
-    log(req.body)
     var newfaculty = req.body.InputFaculty;
     var newyear = req.body.InputYear;
     var InputPass = req.body.InputPass;
     var ComfirmPass = req.body.ComfirmPass;
-   // log("InputPass = "+ InputPass)
-
-    //var newpassword = req.body.InputPass;
 
     if (newfaculty != "") { 
         req.user.faculty = newfaculty;
-       // log("New fa = " + req.user.faculty)
         User.findOneAndUpdate( {"username": req.user.username } ,
          {$set: {faculty: newfaculty}}).catch((error) => {
          res.status(400).send(error)
@@ -271,7 +277,6 @@ router.post('/:linkedUsername/modifyProfile', function(req, res){
     }
     if (newyear != "") { 
         req.user.year = newyear;
-      //   log("New year = " + req.user.year)
         User.findOneAndUpdate(
             {"username": req.user.username } ,
          {$set: {year: newyear}}).catch((error) => {

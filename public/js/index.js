@@ -24,8 +24,9 @@
 $('#searchBox').on('keypress', function(e) {
 	if (e.keyCode == 13) { 
 	  document.getElementById("searchButton").click();
+        e.preventDefault();
+        return false;
 	}
-
 });
 
 $( "#searchButton" ).on( "click", function(){

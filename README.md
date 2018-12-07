@@ -1,5 +1,7 @@
 # CSC309 Project Team #6
 
+![index_pefinder](https://user-images.githubusercontent.com/25379724/49624453-77cf7100-f99f-11e8-8b42-bf3a52acc30f.png)
+
 ![index](https://user-images.githubusercontent.com/25379724/47324775-2ce7dd00-d62f-11e8-8c28-a9cb296f131e.png)
 
 ## Demo Link (Both NodeJS and MongoDB are hosted on t2.micro)
@@ -7,11 +9,7 @@ http://ec2-35-183-8-133.ca-central-1.compute.amazonaws.com
 
 http://pefinder.tk
 
-<<<<<<< HEAD
 ## File Structure
-=======
-## File Structure (legacy)
->>>>>>> master
 ```bash
 \.
 ├── README.md

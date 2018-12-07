@@ -5,15 +5,27 @@ const Solution = require('../models/solution')
 const handlebars = require('handlebars')
 
 // user route
-router.get('/', function(req, res){
-    res.render('display', {
-        title: 'Display',
-        css: ['display.css'],
-        js: ['display.js'],
-    });
-});
+// router.get('/', function(req, res){
+//     res.render('display', {
+//         title: 'Display',
+//         css: ['display.css'],
+//         js: ['display.js'],
+//     });
+// });
 
-router.get('/:courseCode', function(req, res){
+function isAdmin (req, res, next) {
+	if (req.user) {
+        if (req.user.status === 'admin') {
+            return res.redirect("/admin/display" + req.url);
+        } else {
+        	next();
+		}
+	} else {
+        res.redirect("/login");
+	}
+}
+
+router.get('/:courseCode', isAdmin, function(req, res){
 	const courseCode = req.params.courseCode
 	const dept = courseCode.slice(0, 3)
 	const courseNumber = parseInt(courseCode.slice(3, 6), 10)

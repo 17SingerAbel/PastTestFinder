@@ -4,6 +4,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const passportLocalMongoose = require('passport-local-mongoose');
 const { User, Verification } = require('../models/user');
+const { Course } = require('../models/course');
 const randomstring = require("randomstring");
 const nodemailer = require('nodemailer');
 const aws = require('aws-sdk');
@@ -37,7 +38,7 @@ router.get('/login', isLoggedIn, function (req, res) {
     });
 });
 
-router.get('/register', function (req, res) {
+router.get('/register', isLoggedIn, function (req, res) {
     res.render('register', {
         title: 'Register',
         css: ['registerAndLogin.css'],
@@ -53,7 +54,7 @@ router.get("/logout", function (req, res) {
 
 router.post('/login', passport.authenticate("local",
     {
-        successRedirect:"/user",
+        successRedirect:"/",
         failureRedirect:"/login",
         failureFlash: true,
     }),
@@ -117,21 +118,6 @@ router.post('/register', function (req, res) {
         });
     }
     else {
-        User.register(new User({username:req.body.username, status: "user", faculty: "Unknown", 
-            year: "Unknown", img_path:initImg} ), 
-            req.body.password, function (err, user) {
-            if (err) {
-                res.render('register', {
-                    title: 'Register',
-                    css: ['registerAndLogin.css'],
-                    js: ['login.js', 'navbarNeedLogin.js'],
-                    errors: err,
-                });
-            } else {
-                passport.authenticate("local")(req, res, function () {
-                    req.flash('success_msg', 'You are successfully registered.');
-                    res.redirect("/login");
-                });
         const username = req.body.username;
         const input_code = req.body.code;
         Verification.find({
@@ -144,7 +130,8 @@ router.post('/register', function (req, res) {
             }
             return Promise.reject();
         }).then((true_code) => {
-            User.register(new User({username:req.body.username, }), req.body.password, function (err, user) {
+            User.register(new User({username:req.body.username, status: "user", faculty: "Unknown",
+                year: "Unknown", img_path:initImg} ), req.body.password, function (err, user) {
                 if (err) {
                     res.render('register', {
                         title: 'Register',
@@ -179,5 +166,25 @@ function isLoggedIn (req, res, next) {
     }
     res.redirect("/");
 }
+
+// JSON API
+// {
+//     "dept": "CSC",
+//     "courseNumber": 309
+// }
+router.post("/course", function (req, res) {
+    Course.find({
+        dept: req.body.dept,
+        courseNumber: req.body.courseNumber
+    }).then((course) => {
+        if (course.length == 0) {
+            res.status(404).send()
+        } else {
+            res.status(200).send()
+        }
+    }, (error) => {
+        res.status(400).send()
+    })
+});
 
 module.exports = router;

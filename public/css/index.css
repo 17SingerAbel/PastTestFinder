@@ -9,3 +9,7 @@
 .boarderRad{
 	border-radius: 1rem;
 }
+
+#searchButton {
+	color: #ffffff;
+}

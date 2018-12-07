@@ -276,7 +276,7 @@ router.post('/modifyProfile', function(req, res){
 
 });
 
-router.get('/pt-comments/:id', function(req,res){
+router.get('/pt-comments/:id', isAdminPT, function(req,res){
     // ObjectId("5c04c0221c5efe3b585affc5")
     const id = req.params.id;
 
@@ -394,7 +394,7 @@ router.post('/pt-comments/:id', function(req,res){
 function isAdminPT (req, res, next) {
     if (req.user) {
         if (req.user.status === 'admin') {
-            return res.redirect("/admin/display" + req.url);
+            return res.redirect("/admin" + req.url);
         } else {
             next();
         }

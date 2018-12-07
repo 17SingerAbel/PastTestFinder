@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-<<<<<<< HEAD
 
-
-=======
->>>>>>> master
 const CommentsSchema = new Schema({
     username: {
         type: String
@@ -16,12 +12,7 @@ const CommentsSchema = new Schema({
     //     type: Number
     // }
 });
-<<<<<<< HEAD
 
-// module.exports = mongoose.model("Comments", CommentsSchema);
-
-=======
->>>>>>> master
 const SolutionSchema = new Schema({
     dept: {
         type: String
@@ -44,11 +35,6 @@ const SolutionSchema = new Schema({
     author :{
     	type: String
     },
-<<<<<<< HEAD
-    // fileId :{
-    // 	type: String 
-=======
->>>>>>> master
     // }
     file: 
       { data: Buffer, name: String, contentType: String },
@@ -58,7 +44,3 @@ const SolutionSchema = new Schema({
 
 
 module.exports = mongoose.model("Solution", SolutionSchema);
-<<<<<<< HEAD
-=======
-
->>>>>>> master

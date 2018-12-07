@@ -12,6 +12,11 @@ const validate = function () {
     }
 };
 
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
 
 let times = 10;
 let timer = null;
@@ -36,6 +41,9 @@ function sendEmail() {
     const url = '/verify';
     if (document.querySelector('#newUsername').value.length === 0) {
         alert("Please enter the email address.");
+        return false;
+    } else if (!validateEmail(document.querySelector('#newUsername').value)) {
+        alert("Invalid email address.");
         return false;
     }
     // The data we are going to send in our request

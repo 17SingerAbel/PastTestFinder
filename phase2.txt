@@ -1,2 +1,28 @@
-# team06 phase2.txt
 
+Regular User Guidance:
+1.  Login and register button are on top-right corner.
+2. Users should use their email to register an account. The web app will send a verification code to the email. If the user enters a correct verification code, registration is successful.   
+3. Users can click the ¡°upload¡± button on top-right corner to upload a solution. After entering or selecting the Department Type, Course Number, Year, Term, Solution Type (Midterm or Final) and Professor Name, user could click the ¡°submit¡± button to submit the solution. (Note: the solution file must in pdf format).
+4. Users are allowed to search courses after login. 
+5. Users can search courses by using the search box in index page or using the search bar on the top-left in each page. 
+6. In the course information page, users could use filters to search which solutions they are looking for. 
+7. User can open the solution page by clicking the solution name.  
+8. The solution page contains two parts, solution details and comments. Users could zoom in or zoom out the pdf file by using buttons on the top of solution.Users could go to previous page or next page by using the "Previous" and "Next" buttons. Users are allowed to download the solution pdf by using the¡± Download¡± button. 
+9. The Comment session in pt-comment page on right hand side encourages users to discuss the content of the solution. 
+10. Users could click on the ¡°Hello, username¡± on the top-right corner to view and edit their own profile. Editing profile includes changing avatar (note: remember to click the ¡°Save Avatar¡± button), modifying information about their faculty and year of study, and changing password.
+11. In the course information page and solution page, a user could click on other users¡¯ username to view their profile. 
+
+Admin Guidance:
+Admin account: nichenjie2013@gmail.com
+Admin password: 123
+Admins can do the same things mentioned above. 
+In the course information page, admins can use delete buttons to delete solution pdfs.
+In the solution page, admins can delete other users¡¯ comments.
+
+Features:
+The web app sends a verification code to the users¡¯ email when they want to register into. 
+Users can choose their own avatars.
+Users can download the solution pdf file.
+Edits: 
+Users can modify their own password.   
+Users cannot directly use the web app to register an admin account. The web app have only one admin account now. 

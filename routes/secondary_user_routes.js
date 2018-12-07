@@ -194,7 +194,7 @@ router.get('/:linkedUsername/modifyProfile', function(req, res){
     res.render('modifyProfile',{
     	title: 'modify User Profile',
         css: ['userProfile.css'],
-        js: []
+        js: [],
         linkedUsername: linkedUsername,
         loggedUser: req.user
     });

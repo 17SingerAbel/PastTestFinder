@@ -21,17 +21,17 @@ var storage = multer.diskStorage({
 var changeIMG = multer({storage: storage});
 
 // user route
-router.get('/', function(req, res){
-    res.render('index', {
-        title: 'Past Exam Finder',
-        css: ['index.css'],
-        js: ['index.js'],
-    });
-});
+// router.get('/', function(req, res){
+//     res.render('index', {
+//         title: 'Past Exam Finder',
+//         css: ['index.css'],
+//         js: ['index.js'],
+//     });
+// });
 
 
 
-router.get('/profile', function(req, res){
+router.get('/profile/:linkedUsername', function(req, res){
     res.render('profile',{
     	title: 'User Profile',
     	css: ['userProfile.css'],
@@ -40,22 +40,25 @@ router.get('/profile', function(req, res){
     });
 
     log('GET profile')
-
 });
 
-router.get('/modifyProfile', function(req, res){
+router.get('/:linkedUsername/modifyProfile', function(req, res){
+    const linkedUsername = req.params.linkedUsername
+    console.log(linkedUsername)
     res.render('modifyProfile',{
     	title: 'modify User Profile',
-    	css: ['userProfile.css'],
+        css: ['userProfile.css'],
+        linkedUsername: linkedUsername,
     	//js: ['navbarNeedLogin.js'],
     });
     log("Modify")
  
 });
 
-router.post('/profile', changeIMG.single('file'), function(req,res){
+router.post('/profile/:linkedUsername', changeIMG.single('file'), function(req,res){
 	//console.log('profile POSt')
    // log(req.file)
+   const linkedUsername = req.params.linkedUsername
     if (req.file){
         console.log('Change Pic')
 
@@ -80,18 +83,20 @@ router.post('/profile', changeIMG.single('file'), function(req,res){
             res.render('profile',{
                 title: 'User Profile',
                 css: ['userProfile.css'],
+                linkedUsername: linkedUsername,
                 js: [],
                 img: pth
             });
         })
     }
     else {
-        res.redirect("/user/modifyProfile");
+        res.redirect("/user/" + linkedUsername + "/modifyProfile");
     }
 
 });
 
-router.post('/modifyProfile', function(req, res){
+router.post('/:linkedUsername/modifyProfile', function(req, res){
+    let linkedUsername = req.params.linkedUsername
     log(req.body)
     var newfaculty = req.body.InputFaculty;
     var newyear = req.body.InputYear;
@@ -127,6 +132,7 @@ router.post('/modifyProfile', function(req, res){
                 res.render('modifyProfile',{
                     title: 'modify User Profile',
                     css: ['userProfile.css'],
+                    linkedUsername: linkedUsername,
                      errors: errors,
                  });
 
@@ -138,14 +144,14 @@ router.post('/modifyProfile', function(req, res){
                             theUser.save();
                           //  log("Change Pass!");
                             })
-                        res.redirect('/user/profile');
+                        res.redirect('/user/profile/' + linkedUsername);
                     }
                 });        
                 
             }
     }
     else { 
-        res.redirect('/user/profile');
+        res.redirect('/user/profile/' + linkedUsername);
     }
 
 });

@@ -71,7 +71,7 @@ app.use(function (req, res, next) {
     res.locals.faculty = req.user ? req.user.faculty : null;
     res.locals.year = req.user ? req.user.year : null;
     res.locals.img_path = req.user ? req.user.img_path : null;
-  
+    res.locals.linkedUsername = req.user ? req.user.username.split('@')[0] : null;
     res.locals.need_nav_search = true;
     const url = req.originalUrl;
     if (url === '/') {

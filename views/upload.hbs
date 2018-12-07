@@ -1,4 +1,5 @@
-<div class="container mt-5 w-50" >
+<div class="center">
+<div class="container mt-5" >
 
   {{#if success_msg}}
       <div class="alert alert-success">{{success_msg}}</div>
@@ -15,7 +16,7 @@
   {{/if}}
 
 
-  <form id="uploadForm" method="post" action="/user/upload" enctype="multipart/form-data">
+  <form id="uploadForm" method="post" action="/user/upload" enctype="multipart/form-data" class="mr-3">
 
   <div class="form-group row">
     <label for="exampleSelect1" class="col-sm-3">Upload</label>
@@ -91,4 +92,4 @@
 
   
 </div>
-
+</div>

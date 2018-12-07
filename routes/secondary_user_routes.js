@@ -24,6 +24,7 @@ var upload = multer({storage: storage1});
 router.get('/upload', function (req, res) {
     res.render('upload', {
         title: 'Upload File',
+        css: ['upload.css'],
         js: ['upload.js', 'navbarNeedLogin.js'],
     });
 });
@@ -87,6 +88,7 @@ router.post('/upload', upload.single('file'), function(req, res) {
     if (errors) {
         res.render('upload', {
             title: 'Upload File',
+            css: ['upload.css'],
             js: ['upload.js', 'navbarNeedLogin.js'],
             errors: errors,
         });

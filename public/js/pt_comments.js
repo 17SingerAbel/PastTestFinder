@@ -99,10 +99,14 @@ const nextPage = function (e) {
   }
 }
 const zoomIn = function (e) {
-  scale += 0.1;
-  pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
+    if (scale < 1.2) {
+        scale += 0.1;
+        pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
+    }
 }
 const zoomOut = function (e) {
-    scale -= 0.1;
-    pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
+    if (scale > 0.8) {
+        scale -= 0.1;
+        pdfjsLib.getDocument({data: pdfData}).then(getPdfPastTest);
+    }
 }

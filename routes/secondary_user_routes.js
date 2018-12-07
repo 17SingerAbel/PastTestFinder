@@ -7,6 +7,7 @@ const multer = require('multer');
 const fs = require('fs');
 const log = console.log;
 const path = require('path');
+const { ObjectID } = require('mongodb')
 
 
 var storage1 = multer.diskStorage({
@@ -133,15 +134,6 @@ var storage = multer.diskStorage({
 })
 
 var changeIMG = multer({storage: storage});
-
-const Comments = require('../models/comments');
-const Solution = require('../models/solution');
-
-const { check } = require('express-validator/check');
-const { ObjectID } = require('mongodb')
-var fs = require('fs');
-
-const log = console.log;
 
 
 // user route
@@ -389,6 +381,18 @@ router.post('/pt-comments/:id', function(req,res){
         })
     }
 })
+
+function isAdminPT (req, res, next) {
+    if (req.user) {
+        if (req.user.status === 'admin') {
+            return res.redirect("/admin/display" + req.url);
+        } else {
+            next();
+        }
+    } else {
+        res.redirect("/login");
+    }
+}
 
 module.exports = router;
 

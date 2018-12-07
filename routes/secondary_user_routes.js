@@ -283,12 +283,14 @@ router.post('/:linkedUsername/modifyProfile', function(req, res){
         req.checkBody('ComfirmPass', 'Passwords do not match').equals(req.body.InputPass);
          const errors = req.validationErrors();
           if (errors) {
+                req.user.username = req.user.username.split("@")[0]
                 res.render('modifyProfile',{
                     title: 'modify User Profile',
                     css: ['userProfile.css'],
                     linkedUsername: linkedUsername,
-                     errors: errors,
-                 });
+                    loggedUser: req.user,
+                    errors: errors,
+                });
 
             }
             else {

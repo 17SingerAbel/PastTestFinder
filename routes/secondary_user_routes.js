@@ -68,6 +68,9 @@ router.post('/upload', upload.single('file'), function(req, res) {
                 msg: 'Please upload the PDF file.',
                 value: ''
             };
+            if (!errors) {
+                errors = [];
+            }
             errors.unshift(new_error);
 
         } else {
@@ -79,6 +82,9 @@ router.post('/upload', upload.single('file'), function(req, res) {
                     msg: "PDF file is required. Must end with '.pdf'!",
                     value: ''
                 };
+                if (!errors) {
+                    errors = [];
+                }
                 errors.unshift(extention_error);
             }
         }

@@ -201,7 +201,14 @@ router.post('/profile', changeIMG.single('file'), function(req,res){
         })
     }
     else {
-         req.checkBody('req.file', 'Image is required.').notEmpty();
+         // req.checkBody('req.file', 'Image is required.').notEmpty();
+        res.render('profile',{
+            title: 'User Profile',
+            css: ['userProfile.css'],
+            js: [],
+            img_err: 'Image is required.',
+            img: req.user.img_path
+        });
     }
 });
 

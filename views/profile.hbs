@@ -1,20 +1,22 @@
 
-
 <div class="container emp-profile">
     <div class="box-body">
         <div class = "row"> 
             <div class="col-md-4">
                             <div class="profile-img">   
                                 <img class = " profile-img" src = {{loggedUser.img_path}}>
+                                {{#if img_err}}
+                                    <div class="alert alert-danger text-center">{{img_err}}</div>
+                                {{/if}}
                                 {{#if sameUser}}
                                  <form class = " text-center" accept="image/x-png,image/gif,image/jpeg" enctype="multipart/form-data" action="/user/profile/{{linkedUsername}}" method="post" >
                                     <div  class="row offset-md-4">
-                                        <input class = "inputExtraSmall" type="file" name="file">
-                                         <button class="btn btn-outline-secondary buttonExtraSmall" type="submit" name="file"> Change Avatar </button> 
+                                    <input class = "inputExtraSmall" type="file" name="file">
+                                     <button class="btn btn-outline-secondary buttonExtraSmall" type="submit" name="file"> Save Avatar </button> 
                                     </div>
                                           
                                  </form>  
-                                 {{/if}}                                 
+                                 {{/if}}
                             </div>
 
              </div>

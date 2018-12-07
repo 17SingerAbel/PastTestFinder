@@ -1,8 +1,4 @@
-/*#upLoadButton {
-	margin-left: 1%;
-}*/
-
-.container{
+/*.container{
 	margin-right: 200px;
 	margin-left: 0px;
 	 margin-top: 3%;
@@ -24,5 +20,21 @@
 	  width:60px;
 	  line-height: 30px;
 	  padding: 0px;
+}*/
+
+.center {
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 80%;
+    overflow:auto; 
+    /* border: 3px solid green; */
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    background-color: #f9f9f9;
 }
 
+.filterSize{
+	width: 160px;
+}

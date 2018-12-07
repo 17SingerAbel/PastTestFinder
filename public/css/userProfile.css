@@ -106,10 +106,22 @@
 .inputExtraSmall {
     font-size: 8px;
      padding: 2px;
+     padding-left: 0px;
      max-width: 100px;
 }
 
 .imgesize {
     max-width: 200px;
+}
+
+.container{
+    opacity: 0.95;    
+}
+.alert{
+    max-height: 30px;
+    font-size: 10px;
+    text-align: center;
+    margin-bottom: 2px;
+    padding: 0px;
 }
 
